@@ -46,6 +46,7 @@ FIELD_NAME = [^\,\s\t\r\n\{\}]+
 
 <AFTER_FIELD_NAME> {
   {WS}                                  { return SPACE; }
+  {FIELD_NAME}                          { return FIELD_NAME; }
   {LINE_TERMINATOR}                     { yybegin(YYINITIAL); return SEPARATOR; }
   {COMMA}                               { yybegin(YYINITIAL); return SEPARATOR; }
   {PROJECTION_START}                    { yybegin(YYINITIAL); return PROJECTION_START;  }

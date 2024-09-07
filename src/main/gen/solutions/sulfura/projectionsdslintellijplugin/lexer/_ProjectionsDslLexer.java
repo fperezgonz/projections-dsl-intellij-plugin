@@ -97,10 +97,10 @@ public class _ProjectionsDslLexer implements FlexLexer {
 
   private static final String ZZ_ACTION_PACKED_0 =
     "\2\0\1\1\2\2\1\3\1\2\1\4\1\5\1\6"+
-    "\2\7\1\10\1\11";
+    "\1\7\2\10\1\11\1\12";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[14];
+    int [] result = new int[15];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -126,10 +126,10 @@ public class _ProjectionsDslLexer implements FlexLexer {
 
   private static final String ZZ_ROWMAP_PACKED_0 =
     "\0\0\0\10\0\20\0\30\0\40\0\40\0\50\0\40"+
-    "\0\40\0\40\0\40\0\60\0\40\0\40";
+    "\0\40\0\40\0\60\0\40\0\70\0\40\0\40";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[14];
+    int [] result = new int[15];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -153,11 +153,12 @@ public class _ProjectionsDslLexer implements FlexLexer {
 
   private static final String ZZ_TRANS_PACKED_0 =
     "\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12"+
-    "\1\6\1\4\1\13\1\6\1\14\1\13\1\15\1\16"+
-    "\1\3\10\0\1\4\20\0\1\5\7\0\1\13\5\0";
+    "\1\13\1\4\1\14\1\6\1\15\1\14\1\16\1\17"+
+    "\1\3\10\0\1\4\20\0\1\5\5\0\1\13\11\0"+
+    "\1\14\5\0";
 
   private static int [] zzUnpacktrans() {
-    int [] result = new int[56];
+    int [] result = new int[64];
     int offset = 0;
     offset = zzUnpacktrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -195,10 +196,11 @@ public class _ProjectionsDslLexer implements FlexLexer {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\2\0\2\1\2\11\1\1\4\11\1\1\2\11";
+    "\2\0\2\1\2\11\1\1\3\11\1\1\1\11\1\1"+
+    "\2\11";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[14];
+    int [] result = new int[15];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -516,47 +518,52 @@ public class _ProjectionsDslLexer implements FlexLexer {
             { yybegin(AFTER_FIELD_NAME); return FIELD_NAME;
             }
           // fall through
-          case 10: break;
+          case 11: break;
           case 2:
             { return SPACE;
             }
           // fall through
-          case 11: break;
+          case 12: break;
           case 3:
             { return BAD_CHARACTER;
             }
           // fall through
-          case 12: break;
+          case 13: break;
           case 4:
             { return SEPARATOR;
             }
           // fall through
-          case 13: break;
+          case 14: break;
           case 5:
             { return PROJECTION_START;
             }
           // fall through
-          case 14: break;
+          case 15: break;
           case 6:
             { return PROJECTION_END;
             }
           // fall through
-          case 15: break;
-          case 7:
-            { yybegin(YYINITIAL); return SEPARATOR;
-            }
-          // fall through
           case 16: break;
-          case 8:
-            { yybegin(YYINITIAL); return PROJECTION_START;
+          case 7:
+            { return FIELD_NAME;
             }
           // fall through
           case 17: break;
-          case 9:
-            { yybegin(YYINITIAL); return PROJECTION_END;
+          case 8:
+            { yybegin(YYINITIAL); return SEPARATOR;
             }
           // fall through
           case 18: break;
+          case 9:
+            { yybegin(YYINITIAL); return PROJECTION_START;
+            }
+          // fall through
+          case 19: break;
+          case 10:
+            { yybegin(YYINITIAL); return PROJECTION_END;
+            }
+          // fall through
+          case 20: break;
           default:
             zzScanError(ZZ_NO_MATCH);
           }
