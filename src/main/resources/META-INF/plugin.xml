@@ -38,6 +38,10 @@
                 implementationClass="solutions.sulfura.projectionsdslintellijplugin.syntaxhighlighting.ProjectionsDslSyntaxHighlighterFactory"/>
         <colorSettingsPage
                 implementation="solutions.sulfura.projectionsdslintellijplugin.syntaxhighlighting.ProjectionsDslColorSettingsPage"/>
+
+<!--        <annotator-->
+<!--                language="JAVA"-->
+<!--                implementationClass="solutions.sulfura.projectionsdslintellijplugin.utils.ProjectionsDslAnnotator"/>-->
     </extensions>
 
 </idea-plugin>

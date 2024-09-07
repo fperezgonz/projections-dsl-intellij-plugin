@@ -11,14 +11,14 @@ import static solutions.sulfura.projectionsdslintellijplugin.psi.SimpleTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import solutions.sulfura.projectionsdslintellijplugin.psi.*;
 
-public class ProjectionsDslFieldDeclarationImpl extends ASTWrapperPsiElement implements ProjectionsDslFieldDeclaration {
+public class ProjectionsDslProjectionContentImpl extends ASTWrapperPsiElement implements ProjectionsDslProjectionContent {
 
-  public ProjectionsDslFieldDeclarationImpl(@NotNull ASTNode node) {
+  public ProjectionsDslProjectionContentImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull ProjectionsDslVisitor visitor) {
-    visitor.visitFieldDeclaration(this);
+    visitor.visitProjectionContent(this);
   }
 
   @Override
@@ -28,9 +28,15 @@ public class ProjectionsDslFieldDeclarationImpl extends ASTWrapperPsiElement imp
   }
 
   @Override
-  @Nullable
-  public ProjectionsDslLeafProjection getLeafProjection() {
-    return findChildByClass(ProjectionsDslLeafProjection.class);
+  @NotNull
+  public List<ProjectionsDslProjection> getProjectionList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, ProjectionsDslProjection.class);
+  }
+
+  @Override
+  @NotNull
+  public List<ProjectionsDslPropertyName> getPropertyNameList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, ProjectionsDslPropertyName.class);
   }
 
 }

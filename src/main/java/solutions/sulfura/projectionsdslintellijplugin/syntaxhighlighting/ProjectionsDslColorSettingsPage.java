@@ -13,7 +13,7 @@ import java.util.Map;
 public class ProjectionsDslColorSettingsPage implements ColorSettingsPage {
 
     private static final AttributesDescriptor[] DESCRIPTORS = new AttributesDescriptor[]{
-            new AttributesDescriptor("Leaf projection", ProjectionsDslSyntaxHighlighter.LEAF_PROJECTION),
+            new AttributesDescriptor("Projection", ProjectionsDslSyntaxHighlighter.PROJECTION),
             new AttributesDescriptor("Field name", ProjectionsDslSyntaxHighlighter.FIELD_NAME),
             new AttributesDescriptor("Separator", ProjectionsDslSyntaxHighlighter.SEPARATOR),
             new AttributesDescriptor("Braces", ProjectionsDslSyntaxHighlighter.BRACES),

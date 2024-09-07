@@ -7,11 +7,15 @@ import com.intellij.psi.PsiElement;
 
 public class ProjectionsDslVisitor extends PsiElementVisitor {
 
-  public void visitFieldDeclaration(@NotNull ProjectionsDslFieldDeclaration o) {
+  public void visitProjection(@NotNull ProjectionsDslProjection o) {
     visitPsiElement(o);
   }
 
-  public void visitLeafProjection(@NotNull ProjectionsDslLeafProjection o) {
+  public void visitProjectionContent(@NotNull ProjectionsDslProjectionContent o) {
+    visitPsiElement(o);
+  }
+
+  public void visitPropertyName(@NotNull ProjectionsDslPropertyName o) {
     visitPsiElement(o);
   }
 

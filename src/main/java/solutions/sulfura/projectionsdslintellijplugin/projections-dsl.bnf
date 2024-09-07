@@ -11,12 +11,18 @@
   elementTypeHolderClass="solutions.sulfura.projectionsdslintellijplugin.psi.SimpleTypes"
   elementTypeClass="solutions.sulfura.projectionsdslintellijplugin.psi.ProjectionsDslElementType"
   tokenTypeClass="solutions.sulfura.projectionsdslintellijplugin.psi.ProjectionsDslTokenType"
+
+  psiImplUtilClass="solutions.sulfura.projectionsdslintellijplugin.psi.ProjectionsDslPsiUtil"
 }
 
 
-projection ::= SPACE* PROJECTION_START SPACE* fieldDeclaration (SEPARATOR SPACE* fieldDeclaration )* SPACE* SEPARATOR? SPACE* PROJECTION_END SPACE*
+projectionRoot ::= SPACE* projection SPACE*
 
-fieldDeclaration ::= FIELD_NAME SPACE* leafProjection?
+projection ::= PROJECTION_START SPACE* projectionContent SPACE* (SEPARATOR SPACE*)? PROJECTION_END
 
-leafProjection ::= PROJECTION_START SPACE* (FIELD_NAME SPACE*) (SEPARATOR FIELD_NAME SPACE*)* SPACE* SEPARATOR? SPACE* PROJECTION_END
+projectionContent ::= propertyName ( SPACE* (SEPARATOR|projection) SPACE* propertyName)* SPACE* (SEPARATOR? SPACE* projection)?
 
+propertyName ::= FIELD_NAME
+{
+    methods=[getFieldName]
+}

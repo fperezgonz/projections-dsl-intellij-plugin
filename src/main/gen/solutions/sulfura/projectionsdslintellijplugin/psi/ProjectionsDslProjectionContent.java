@@ -5,9 +5,12 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface ProjectionsDslFieldDeclaration extends PsiElement {
+public interface ProjectionsDslProjectionContent extends PsiElement {
 
-  @Nullable
-  ProjectionsDslLeafProjection getLeafProjection();
+  @NotNull
+  List<ProjectionsDslProjection> getProjectionList();
+
+  @NotNull
+  List<ProjectionsDslPropertyName> getPropertyNameList();
 
 }

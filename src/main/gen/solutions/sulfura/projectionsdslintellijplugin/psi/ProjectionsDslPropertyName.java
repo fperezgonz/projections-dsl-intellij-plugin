@@ -5,6 +5,8 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface ProjectionsDslLeafProjection extends PsiElement {
+public interface ProjectionsDslPropertyName extends PsiElement {
+
+  String getFieldName();
 
 }

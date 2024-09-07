@@ -20,8 +20,8 @@ public class ProjectionsDslSyntaxHighlighter extends SyntaxHighlighterBase {
             createTextAttributesKey("SEPARATOR", DefaultLanguageHighlighterColors.COMMA);
     public static final TextAttributesKey BRACES =
             createTextAttributesKey("BRACES", DefaultLanguageHighlighterColors.BRACES);
-    public static final TextAttributesKey LEAF_PROJECTION =
-            createTextAttributesKey("LEAF_PROJECTION");
+    public static final TextAttributesKey PROJECTION =
+            createTextAttributesKey("PROJECTION");
     public static final TextAttributesKey BAD_CHARACTER =
             createTextAttributesKey("PROJECTIONS_DSL_BAD_CHARACTER", HighlighterColors.BAD_CHARACTER);
 
@@ -29,7 +29,7 @@ public class ProjectionsDslSyntaxHighlighter extends SyntaxHighlighterBase {
     private static final TextAttributesKey[] SEPARATOR_KEYS = new TextAttributesKey[]{SEPARATOR};
     private static final TextAttributesKey[] FIELD_NAME_KEYS = new TextAttributesKey[]{FIELD_NAME};
     private static final TextAttributesKey[] BRACES_KEYS = new TextAttributesKey[]{BRACES};
-    private static final TextAttributesKey[] LEAF_PROJECTION_KEYS = new TextAttributesKey[]{LEAF_PROJECTION};
+    private static final TextAttributesKey[] PROJECTION_KEYS = new TextAttributesKey[]{PROJECTION};
     private static final TextAttributesKey[] BAD_CHAR_KEYS = new TextAttributesKey[]{BAD_CHARACTER};
     private static final TextAttributesKey[] EMPTY_KEYS = new TextAttributesKey[0];
 
@@ -42,8 +42,8 @@ public class ProjectionsDslSyntaxHighlighter extends SyntaxHighlighterBase {
     @Override
     public TextAttributesKey @NotNull [] getTokenHighlights(IElementType tokenType) {
 
-        if(tokenType.equals(SimpleTypes.LEAF_PROJECTION)){
-            return LEAF_PROJECTION_KEYS;
+        if(tokenType.equals(SimpleTypes.PROJECTION)){
+            return PROJECTION_KEYS;
         }
         if (tokenType.equals(SimpleTypes.SEPARATOR)) {
             return SEPARATOR_KEYS;

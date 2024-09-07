@@ -8,8 +8,9 @@ import solutions.sulfura.projectionsdslintellijplugin.psi.impl.*;
 
 public interface SimpleTypes {
 
-  IElementType FIELD_DECLARATION = new ProjectionsDslElementType("FIELD_DECLARATION");
-  IElementType LEAF_PROJECTION = new ProjectionsDslElementType("LEAF_PROJECTION");
+  IElementType PROJECTION = new ProjectionsDslElementType("PROJECTION");
+  IElementType PROJECTION_CONTENT = new ProjectionsDslElementType("PROJECTION_CONTENT");
+  IElementType PROPERTY_NAME = new ProjectionsDslElementType("PROPERTY_NAME");
 
   IElementType FIELD_NAME = new ProjectionsDslTokenType("FIELD_NAME");
   IElementType PROJECTION_END = new ProjectionsDslTokenType("PROJECTION_END");
@@ -20,11 +21,14 @@ public interface SimpleTypes {
   class Factory {
     public static PsiElement createElement(ASTNode node) {
       IElementType type = node.getElementType();
-      if (type == FIELD_DECLARATION) {
-        return new ProjectionsDslFieldDeclarationImpl(node);
+      if (type == PROJECTION) {
+        return new ProjectionsDslProjectionImpl(node);
       }
-      else if (type == LEAF_PROJECTION) {
-        return new ProjectionsDslLeafProjectionImpl(node);
+      else if (type == PROJECTION_CONTENT) {
+        return new ProjectionsDslProjectionContentImpl(node);
+      }
+      else if (type == PROPERTY_NAME) {
+        return new ProjectionsDslPropertyNameImpl(node);
       }
       throw new AssertionError("Unknown element type: " + type);
     }
