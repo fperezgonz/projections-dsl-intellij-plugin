@@ -1,0 +1,22 @@
+{
+  parserClass="solutions.sulfura.projectionsdslintellijplugin.psi.ProjectionsDslParser"
+
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+  psiClassPrefix="ProjectionsDsl"
+  psiImplClassSuffix="Impl"
+  psiPackage="solutions.sulfura.projectionsdslintellijplugin.psi"
+  psiImplPackage="solutions.sulfura.projectionsdslintellijplugin.psi.impl"
+
+  elementTypeHolderClass="solutions.sulfura.projectionsdslintellijplugin.psi.SimpleTypes"
+  elementTypeClass="solutions.sulfura.projectionsdslintellijplugin.psi.ProjectionsDslElementType"
+  tokenTypeClass="solutions.sulfura.projectionsdslintellijplugin.psi.ProjectionsDslTokenType"
+}
+
+
+projection ::= SPACE* PROJECTION_START SPACE* fieldDeclaration (SEPARATOR SPACE* fieldDeclaration )* SPACE* SEPARATOR? SPACE* PROJECTION_END SPACE*
+
+fieldDeclaration ::= FIELD_NAME SPACE* leafProjection?
+
+leafProjection ::= PROJECTION_START SPACE* (FIELD_NAME SPACE*) (SEPARATOR FIELD_NAME SPACE*)* SPACE* SEPARATOR? SPACE* PROJECTION_END
+

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="5mm"
+   height="5mm"
+   viewBox="0 0 20 19.999999"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="sulfura-code-projections-filetype-orangegrad-dark.svg"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   inkscape:export-filename="sulfura-code-icon-orangegrad.svg"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <style
+     id="style5">.std-stroke { stroke-width:5;    stroke:#806600;    fill:black; }
+</style>
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#e7e7e7"
+     bordercolor="#ebebeb"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d3d3d3"
+     inkscape:document-units="mm"
+     inkscape:zoom="64"
+     inkscape:cx="9.5703125"
+     inkscape:cy="10.414062"
+     inkscape:window-width="3840"
+     inkscape:window-height="2036"
+     inkscape:window-x="-12"
+     inkscape:window-y="-12"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     showguides="true" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:#7a7a7a;fill-opacity:1;stroke:#3b92c4;stroke-width:0.4;stroke-dasharray:none;stroke-opacity:0"
+       d="M 14.51901,5.0270832 0.57877602,15.428516 14.56862,12.815755"
+       id="path7" />
+    <ellipse
+       style="fill:#7a7a7a;fill-opacity:1;stroke:#3b92c4;stroke-width:0.319946;stroke-dasharray:none;stroke-opacity:0"
+       id="path8"
+       cx="14.95012"
+       cy="8.92803"
+       rx="2.7763624"
+       ry="3.9012699" />
+  </g>
+</svg>
