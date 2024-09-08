@@ -45,3 +45,7 @@ bin/
 /idea-flex.skeleton
 /src/main/gen/solutions/sulfura/projectionsdslintellijplugin/idea-flex.skeleton
 /jflex-1.9.1.jar
+
+### Environment settings ###
+/config/**
+!/config/*.dist

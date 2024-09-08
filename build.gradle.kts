@@ -7,8 +7,25 @@ plugins {
 group = "solutions.sulfura"
 version = "1.0-SNAPSHOT"
 
+apply(from = "config/settings.env.gradle.kts")
+
 repositories {
     mavenCentral()
+    maven {
+        url = uri("https://gitlab.com/api/v4/projects/46985246/packages/maven")
+        credentials(HttpHeaderCredentials::class) {
+            name = properties.getOrDefault("mavenTokenName", "Job-Token").toString()
+            value = properties.getOrDefault("mavenTokenValue", System.getenv("CI_JOB_TOKEN")).toString()
+        }
+        authentication {
+            create<HttpHeaderAuthentication>("header")
+        }
+    }
+}
+
+dependencies {
+    implementation("solutions.sulfura:gen-d-api:1.1.0-SNAPSHOT")
+    implementation("io.vavr:vavr:0.10.4")
 }
 
 // Configure Gradle IntelliJ Plugin
@@ -16,11 +33,11 @@ repositories {
 intellij {
     version.set("2023.2.6")
     type.set("IC") // Target IDE Platform
-
     plugins.set(listOf("com.intellij.java"))
 }
 
 sourceSets["main"].java.srcDirs("src/main/gen")
+sourceSets["main"].java.exclude("solutions/sulfura/plugin/manualtests/**")
 
 tasks {
     // Set the JVM compatibility versions
