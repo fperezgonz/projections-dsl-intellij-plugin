@@ -76,6 +76,7 @@ public class ProjectionsDslCompletionContributor extends CompletionContributor {
 
                     PsiField[] fields = psiNestedProjectionRootClass.getAllFields();
 
+                    //TODO filter out properties already declared in the current projection
                     result.addAllElements(
                             Arrays.stream(fields)
                                     .map(PsiField::getName)
@@ -324,6 +325,7 @@ public class ProjectionsDslCompletionContributor extends CompletionContributor {
 
         public PsiType getPsiType(@NotNull PsiAnnotation psiAnnotation) {
 
+            //TODO Make it work with annotations that specify the dto class
             // Retrieve the type annotated by this PsiAnnotation
             PsiElement parent = psiAnnotation.getParent();
             PsiType psiType = null;
