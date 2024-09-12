@@ -16,7 +16,6 @@ import static solutions.sulfura.projectionsdslintellijplugin.utils.ProjectionsDs
 
 public class ProjectionsDslCompletionContributor extends CompletionContributor {
 
-
     public ProjectionsDslCompletionContributor() {
         extend(CompletionType.BASIC, PlatformPatterns.psiElement(SimpleTypes.FIELD_NAME),
                 new ProjectionsDslCompletionProvider()
@@ -28,7 +27,6 @@ public class ProjectionsDslCompletionContributor extends CompletionContributor {
         @Override
         protected void addCompletions(@NotNull CompletionParameters parameters, @NotNull ProcessingContext context, @NotNull CompletionResultSet result) {
 
-
             PsiElement element = parameters.getPosition();
             PsiElement originalElement = parameters.getOriginalPosition();
             PsiAnnotation psiAnnotation = getContextAnnotation(element);
@@ -37,8 +35,12 @@ public class ProjectionsDslCompletionContributor extends CompletionContributor {
                 return;
             }
 
+            if (originalElement == null) {
+                return;
+            }
 
-            List<String> projectionPropertyPath = getPathToProperty(originalElement);
+            List<String> projectionPropertyPath;
+            projectionPropertyPath = getPathToProperty(originalElement);
             String inputtedTextForCurrentProperty = getInputtedTextForCurrentProperty(parameters);
             String searchTerm = ObjectUtils.firstNonNull(inputtedTextForCurrentProperty, "");
             projectionPropertyPath.add(searchTerm);

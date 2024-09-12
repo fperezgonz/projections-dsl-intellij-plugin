@@ -1,17 +1,14 @@
 package solutions.sulfura.projectionsdslintellijplugin.psi;
 
-import com.intellij.lang.ASTNode;
+import com.intellij.psi.PsiElement;
+import com.intellij.psi.PsiReference;
+import org.jetbrains.annotations.NotNull;
 
 public class ProjectionsDslPsiUtil {
 
-    public static String getFieldName(ProjectionsDslPropertyName element) {
-        ASTNode keyNode = element.getNode().findChildByType(SimpleTypes.FIELD_NAME);
-        if (keyNode != null) {
-            // IMPORTANT: Convert embedded escaped spaces to simple spaces
-            return keyNode.getText().replaceAll("\\\\ ", " ");
-        } else {
-            return null;
-        }
+    public static PsiReference @NotNull [] getReferences(PsiElement thisElement) {
+        //This is what makes the ProjectionsDslReferenceProvider work
+        return com.intellij.psi.impl.source.resolve.reference.ReferenceProvidersRegistry.getReferencesFromProviders(thisElement);
     }
 
 }

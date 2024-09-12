@@ -45,6 +45,11 @@
         <completion.contributor
                 implementationClass="solutions.sulfura.projectionsdslintellijplugin.utils.ProjectionsDslCompletionContributor"
                 language="DtoProjectionsDsl"/>
+        <psi.referenceContributor
+                implementation="solutions.sulfura.projectionsdslintellijplugin.references.ProjectionsDslReferenceContributor"
+                language="DtoProjectionsDsl"/>
+        <lang.elementManipulator implementationClass="solutions.sulfura.projectionsdslintellijplugin.references.ProjectionsDslPropertyNameManipulator"
+                            forClass="solutions.sulfura.projectionsdslintellijplugin.psi.impl.ProjectionsDslPropertyNameImpl"/>
     </extensions>
 
 </idea-plugin>

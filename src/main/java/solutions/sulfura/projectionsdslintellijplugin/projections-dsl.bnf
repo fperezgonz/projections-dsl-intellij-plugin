@@ -24,5 +24,5 @@ projectionContent ::= propertyName ( SPACE* (SEPARATOR|projection) SPACE* proper
 
 propertyName ::= FIELD_NAME
 {
-    methods=[getFieldName]
+    methods=[getReferences]
 }

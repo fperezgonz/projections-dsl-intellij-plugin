@@ -3,9 +3,7 @@ package solutions.sulfura.projectionsdslintellijplugin.utils;
 import com.google.common.collect.Lists;
 import com.intellij.lang.injection.InjectedLanguageManager;
 import com.intellij.psi.*;
-import com.intellij.psi.impl.source.tree.LeafPsiElement;
 import com.intellij.psi.search.GlobalSearchScope;
-import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.util.PsiTypesUtil;
 import com.intellij.psi.util.PsiUtil;
 import io.vavr.control.Option;
@@ -13,7 +11,6 @@ import org.jetbrains.annotations.NotNull;
 import solutions.sulfura.gend.dtos.ListOperation;
 import solutions.sulfura.projectionsdslintellijplugin.psi.ProjectionsDslProjection;
 import solutions.sulfura.projectionsdslintellijplugin.psi.ProjectionsDslPropertyName;
-import solutions.sulfura.projectionsdslintellijplugin.psi.SimpleTypes;
 
 import java.util.*;
 
@@ -58,7 +55,6 @@ public class ProjectionsDslUtil {
 
     }
 
-
     public static PsiElement findParentPropertyInOriginalElement(@NotNull PsiElement psiElement) {
 
         //Find parentProjection
@@ -87,79 +83,96 @@ public class ProjectionsDslUtil {
         return null;
     }
 
+//    //Use this when there is no original element (such as when there are parsing errors)
+//    public static List<String> getPathToPropertyOnFlattenedTree(@NotNull PsiElement element) {
+//
+//        List<String> path = new ArrayList<>();
+//
+//        while (element != null) {
+//
+//            element = findParentPropertyOnFlattenedParseTree(element);
+//            if (element != null) {
+//                path.add(element.getText());
+//            }
+//
+//        }
+//
+//        return Lists.reverse(path);
+//
+//    }
 
-    //Use this when there is no original element (such as when there are parsing errors)
-    public PsiElement findParentProperty(@NotNull PsiElement psiElement) {
-
-        //Find the projection start
-        while (psiElement != null) {
-
-            if (psiElement instanceof LeafPsiElement) {
-
-                IElementType elementType = ((LeafPsiElement) psiElement).getElementType();
-
-                if (elementType == SimpleTypes.PROJECTION_END) {
-                    psiElement = skipAdjacentProjection(psiElement);
-                    continue;
-                }
-
-                //Found!
-                if (elementType == SimpleTypes.PROJECTION_START) {
-                    psiElement = psiElement.getPrevSibling();
-                    break;
-                }
-
-                psiElement = psiElement.getPrevSibling();
-
-            }
-        }
-
-        //Find the property name for this projection
-        while (psiElement != null) {
-
-            if (psiElement instanceof LeafPsiElement) {
-
-                IElementType elementType = ((LeafPsiElement) psiElement).getElementType();
-
-                if (elementType == SimpleTypes.FIELD_NAME) {
-                    return psiElement;
-                }
-
-                psiElement = psiElement.getPrevSibling();
-
-            }
-        }
-
-        return null;
-
-    }
-
-    public PsiElement skipAdjacentProjection(@NotNull PsiElement projectionEnd) {
-
-        int nestingDepth = 0;
-
-        PsiElement psiElement = projectionEnd;
-
-        while (psiElement != null) {
-
-            if (psiElement instanceof LeafPsiElement) {
-                IElementType elementType = ((LeafPsiElement) psiElement).getElementType();
-                if (elementType == SimpleTypes.PROJECTION_END) {
-                    nestingDepth++;
-                } else if (elementType == SimpleTypes.PROJECTION_START) {
-                    if (nestingDepth == 0) {
-                        return psiElement.getPrevSibling();
-                    } else {
-                        nestingDepth--;
-                    }
-                }
-                psiElement = psiElement.getPrevSibling();
-            }
-        }
-
-        return null;
-
-    }
+//    //Use this when there is no original element (such as when there are parsing errors)
+//    public static PsiElement findParentPropertyOnFlattenedParseTree(@NotNull PsiElement psiElement) {
+//
+//        //Find the projection start
+//        while (psiElement != null) {
+//
+//            if (psiElement instanceof LeafPsiElement) {
+//
+//                IElementType elementType = ((LeafPsiElement) psiElement).getElementType();
+//
+//                if (elementType == SimpleTypes.PROJECTION_END) {
+//                    psiElement = skipAdjacentProjection(psiElement);
+//                    continue;
+//                }
+//
+//                //Found!
+//                if (elementType == SimpleTypes.PROJECTION_START) {
+//                    psiElement = psiElement.getPrevSibling();
+//                    break;
+//                }
+//
+//                psiElement = psiElement.getPrevSibling();
+//
+//            }
+//        }
+//
+//        //Find the property name for this projection
+//        while (psiElement != null) {
+//
+//            if (psiElement instanceof LeafPsiElement) {
+//
+//                IElementType elementType = ((LeafPsiElement) psiElement).getElementType();
+//
+//                if (elementType == SimpleTypes.FIELD_NAME) {
+//                    return psiElement;
+//                }
+//
+//                psiElement = psiElement.getPrevSibling();
+//
+//            }
+//        }
+//
+//        return null;
+//
+//    }
+//
+//    public static PsiElement skipAdjacentProjection(@NotNull PsiElement projectionEnd) {
+//
+//        int nestingDepth = 0;
+//
+//        PsiElement psiElement = projectionEnd;
+//
+//        while (psiElement != null) {
+//
+//            if (psiElement instanceof LeafPsiElement) {
+//                IElementType elementType = ((LeafPsiElement) psiElement).getElementType();
+//                if (elementType == SimpleTypes.PROJECTION_END) {
+//                    nestingDepth++;
+//                } else if (elementType == SimpleTypes.PROJECTION_START) {
+//                    if (nestingDepth == 0) {
+//                        return psiElement.getPrevSibling();
+//                    } else {
+//                        nestingDepth--;
+//                    }
+//                }
+//                psiElement = psiElement.getPrevSibling();
+//            }
+//        }
+//
+//        return null;
+//
+//    }
 
     public static PsiClass findClassForNestedProperty(@NotNull PsiClass psiProjectionRootClass, List<String> propertyPath, PsiType collectionPsiType) {
 

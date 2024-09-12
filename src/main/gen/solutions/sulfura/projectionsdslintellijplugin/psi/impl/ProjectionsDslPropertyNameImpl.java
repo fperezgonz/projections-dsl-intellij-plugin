@@ -1,15 +1,14 @@
 // This is a generated file. Not intended for manual editing.
 package solutions.sulfura.projectionsdslintellijplugin.psi.impl;
 
-import java.util.List;
-import org.jetbrains.annotations.*;
-import com.intellij.lang.ASTNode;
-import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiElementVisitor;
-import com.intellij.psi.util.PsiTreeUtil;
-import static solutions.sulfura.projectionsdslintellijplugin.psi.SimpleTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
-import solutions.sulfura.projectionsdslintellijplugin.psi.*;
+import com.intellij.lang.ASTNode;
+import com.intellij.psi.PsiElementVisitor;
+import com.intellij.psi.PsiReference;
+import org.jetbrains.annotations.NotNull;
+import solutions.sulfura.projectionsdslintellijplugin.psi.ProjectionsDslPropertyName;
+import solutions.sulfura.projectionsdslintellijplugin.psi.ProjectionsDslPsiUtil;
+import solutions.sulfura.projectionsdslintellijplugin.psi.ProjectionsDslVisitor;
 
 public class ProjectionsDslPropertyNameImpl extends ASTWrapperPsiElement implements ProjectionsDslPropertyName {
 
@@ -28,8 +27,8 @@ public class ProjectionsDslPropertyNameImpl extends ASTWrapperPsiElement impleme
   }
 
   @Override
-  public String getFieldName() {
-    return ProjectionsDslPsiUtil.getFieldName(this);
+  public PsiReference @NotNull [] getReferences() {
+    return ProjectionsDslPsiUtil.getReferences(this);
   }
 
 }
