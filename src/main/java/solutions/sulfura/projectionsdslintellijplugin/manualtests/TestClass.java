@@ -10,11 +10,11 @@ import java.util.Optional;
 public class TestClass {
 
 
-    @TestAnnotation(value = """
+    @TestAnnotation(projectedClass = TestDto.class, value = """
             {
             listTestDto ,
-                    
-                    
+            
+            
             optionalString,
             nestedNestedTestDto{
                 nestedTestDto {
@@ -26,7 +26,7 @@ public class TestClass {
                 optionString
                 optionalString {
                     optionTestDto { optionString,opt, listString
-                    
+            
                      }
                      optionTestDto
                 }
@@ -34,7 +34,7 @@ public class TestClass {
             listString, optionTestDto
                   }
             """)
-    public TestDto testMethod(@TestAnnotation("{f1, f3}") TestDto testParam) {
+    public TestDto testMethod(@TestAnnotation(projectedClass = TestDto.class, value = "{f1, f3}") TestDto testParam) {
 
         return null;
     }

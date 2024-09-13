@@ -44,7 +44,7 @@ public class ProjectionsDslCompletionContributor extends CompletionContributor {
             String inputtedTextForCurrentProperty = getInputtedTextForCurrentProperty(parameters);
             String searchTerm = ObjectUtils.firstNonNull(inputtedTextForCurrentProperty, "");
             projectionPropertyPath.add(searchTerm);
-            PsiType psiType = getPsiTypeFromAnnotatedParameterOrMethodReturnType(psiAnnotation);
+            PsiType psiType = getProjectedPsiType(psiAnnotation);
 
             if (!(psiType instanceof PsiClassType)) {
                 return;

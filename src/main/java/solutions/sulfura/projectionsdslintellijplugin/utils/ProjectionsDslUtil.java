@@ -2,6 +2,8 @@ package solutions.sulfura.projectionsdslintellijplugin.utils;
 
 import com.google.common.collect.Lists;
 import com.intellij.lang.injection.InjectedLanguageManager;
+import com.intellij.lang.jvm.annotation.JvmAnnotationAttribute;
+import com.intellij.lang.jvm.annotation.JvmAnnotationClassValue;
 import com.intellij.psi.*;
 import com.intellij.psi.search.GlobalSearchScope;
 import com.intellij.psi.util.PsiTypesUtil;
@@ -253,13 +255,25 @@ public class ProjectionsDslUtil {
     }
 
 
-    public static PsiType getPsiTypeFromAnnotatedParameterOrMethodReturnType(@NotNull PsiAnnotation psiAnnotation) {
+    public static PsiType getProjectedPsiType(@NotNull PsiAnnotation psiAnnotation) {
 
-        //TODO Make it work with annotations that specify the dto class
         // Retrieve the type annotated by this PsiAnnotation
         PsiElement parent = psiAnnotation.getParent();
         PsiType psiType = null;
 
+        //Try to find an attribute named projectedClass
+        JvmAnnotationAttribute projectedClassAttribute = psiAnnotation.getAttributes().stream()
+                .filter(attr -> attr.getAttributeName().equals("projectedClass"))
+                .findFirst()
+                .orElse(null);
+
+        //If the projected class is defined in the annotation, return that class
+        if (projectedClassAttribute instanceof JvmAnnotationClassValue projectedClass
+                && projectedClass.getClazz() instanceof PsiClass psiClass) {
+            return PsiTypesUtil.getClassType(psiClass);
+        }
+
+        //If no projected class was specified on the annotation, try to infer it from the type annotated by this annotation
         if (parent instanceof PsiModifierList) {
             PsiElement grandParent = parent.getParent();
             if (grandParent instanceof PsiField psiField) {
@@ -288,7 +302,7 @@ public class ProjectionsDslUtil {
 
     public static PsiClass findProjectedClassAtPath(PsiAnnotation psiAnnotation, List<String> projectionPropertyPath) {
 
-        PsiType psiType = getPsiTypeFromAnnotatedParameterOrMethodReturnType(psiAnnotation);
+        PsiType psiType = getProjectedPsiType(psiAnnotation);
 
         if (!(psiType instanceof PsiClassType psiClassType)) {
             return null;

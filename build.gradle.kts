@@ -10,6 +10,7 @@ version = "1.0-SNAPSHOT"
 apply(from = "config/settings.env.gradle.kts")
 
 repositories {
+    mavenLocal()
     mavenCentral()
     maven {
         url = uri("https://gitlab.com/api/v4/projects/46985246/packages/maven")
@@ -24,7 +25,8 @@ repositories {
 }
 
 dependencies {
-    implementation("solutions.sulfura:gen-d-api:1.1.0-SNAPSHOT")
+    implementation("solutions.sulfura:gen-d-api:1.1.0-RELEASE")
+    implementation("solutions.sulfura:gen-d-projections-dsl:1.1.0-RELEASE")
     implementation("io.vavr:vavr:0.10.4")
 }
 
