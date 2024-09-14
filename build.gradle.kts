@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "solutions.sulfura"
-version = "1.0-SNAPSHOT"
+version = "1.0-RELEASE"
 
 apply(from = "config/settings.env.gradle.kts")
 
@@ -57,8 +57,8 @@ tasks {
     }
 
     signPlugin {
-        certificateChain.set(System.getenv("CERTIFICATE_CHAIN"))
-        privateKey.set(System.getenv("PRIVATE_KEY"))
+        certificateChain.set(System.getenv(file("config/chain.crt").readText()))
+        privateKey.set(System.getenv(file("config/private.pem").readText()))
         password.set(System.getenv("PRIVATE_KEY_PASSWORD"))
     }
 
