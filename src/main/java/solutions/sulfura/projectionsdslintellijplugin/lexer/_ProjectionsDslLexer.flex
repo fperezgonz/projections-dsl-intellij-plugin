@@ -22,7 +22,7 @@ import static solutions.sulfura.projectionsdslintellijplugin.psi.SimpleTypes.*;
 %unicode
 
 //EOL=\R
-LINE_TERMINATOR = (\r\n)|\r|\n
+EOL = (\r\n)|\r|\n
 WS = (\ |\t)+
 COMMA = \,
 PROJECTION_START = \{
@@ -35,7 +35,7 @@ FIELD_NAME = [^\,\s\t\r\n\{\}]+
 
 <YYINITIAL> {
   {WS}                                  { return SPACE; }
-  {LINE_TERMINATOR}                     { return SPACE; }
+  {EOL}                                 { return SPACE; }
   {COMMA}                               { return SEPARATOR; }
   {FIELD_NAME}                          { yybegin(AFTER_FIELD_NAME); return FIELD_NAME; }
   {PROJECTION_START}                    { return PROJECTION_START; }
@@ -47,7 +47,7 @@ FIELD_NAME = [^\,\s\t\r\n\{\}]+
 <AFTER_FIELD_NAME> {
   {WS}                                  { return SPACE; }
   {FIELD_NAME}                          { return FIELD_NAME; }
-  {LINE_TERMINATOR}                     { yybegin(YYINITIAL); return SEPARATOR; }
+  {EOL}                                 { yybegin(YYINITIAL); return SEPARATOR; }
   {COMMA}                               { yybegin(YYINITIAL); return SEPARATOR; }
   {PROJECTION_START}                    { yybegin(YYINITIAL); return PROJECTION_START;  }
   {PROJECTION_END}                      { yybegin(YYINITIAL); return PROJECTION_END; }

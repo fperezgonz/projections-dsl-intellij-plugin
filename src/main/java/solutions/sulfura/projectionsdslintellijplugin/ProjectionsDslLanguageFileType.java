@@ -19,7 +19,6 @@ public class ProjectionsDslLanguageFileType extends LanguageFileType {
         super(ProjectionsDsl.INSTANCE);
     }
 
-
     @Override
     public @NonNls @NotNull String getName() {
         return "Dto projections dsl file";

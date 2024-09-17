@@ -14,7 +14,7 @@
          Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
     <description><![CDATA[
-    Adds support for gen-d dto projections dsl
+    Syntax highlighting, autocompletion and navigation for gen-d dto projections dsl annotations
   ]]></description>
 
     <!-- Product and plugin compatibility requirements.
