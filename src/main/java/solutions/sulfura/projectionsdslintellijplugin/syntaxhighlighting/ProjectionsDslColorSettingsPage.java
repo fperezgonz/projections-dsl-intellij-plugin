@@ -5,7 +5,7 @@ import com.intellij.openapi.fileTypes.SyntaxHighlighter;
 import com.intellij.openapi.options.colors.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import solutions.sulfura.projectionsdslintellijplugin.ProjectionsDslLanguageFileType;
+import solutions.sulfura.projectionsdslintellijplugin.language.ProjectionsDslLanguageFileType;
 
 import javax.swing.*;
 import java.util.Map;
@@ -41,7 +41,6 @@ public class ProjectionsDslColorSettingsPage implements ColorSettingsPage {
                     field4 error
                     field5 {
                         nestedField1
-                        nestedField2
                     }
                     field6
                 

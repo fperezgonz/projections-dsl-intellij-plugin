@@ -34,7 +34,7 @@ public class TestClass {
             listString, optionTestDto
                   }
             """)
-    public TestDto testMethod(@TestAnnotation(projectedClass = TestDto.class, value = "{f1, f3}") TestDto testParam) {
+    public TestDto testMethod(@TestAnnotation(projectedClass = TestDto.class, value = "{listTestDto, optionalString}") TestDto testParam) {
 
         return null;
     }

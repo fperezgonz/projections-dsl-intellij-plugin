@@ -3,7 +3,7 @@ package solutions.sulfura.projectionsdslintellijplugin.psi;
 import com.intellij.psi.tree.IElementType;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
-import solutions.sulfura.projectionsdslintellijplugin.ProjectionsDsl;
+import solutions.sulfura.projectionsdslintellijplugin.language.ProjectionsDsl;
 
 public class ProjectionsDslElementType extends IElementType {
     public ProjectionsDslElementType(@NonNls @NotNull String debugName) {

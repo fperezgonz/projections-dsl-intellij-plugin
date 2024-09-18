@@ -14,7 +14,7 @@
          Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
     <description><![CDATA[
-    Syntax highlighting, autocompletion and navigation for gen-d dto projections dsl annotations
+    Provides syntax highlighting, autocompletion and navigation for gen-d dto projections dsl annotations
   ]]></description>
 
     <!-- Product and plugin compatibility requirements.
@@ -27,21 +27,18 @@
     <extensions defaultExtensionNs="com.intellij">
         <fileType
                 name="Dto projections dsl file"
-                implementationClass="solutions.sulfura.projectionsdslintellijplugin.ProjectionsDslLanguageFileType"
+                implementationClass="solutions.sulfura.projectionsdslintellijplugin.language.ProjectionsDslLanguageFileType"
                 fieldName="INSTANCE"
                 language="DtoProjectionsDsl"
                 extensions="dpd"/>
         <lang.parserDefinition
                 language="DtoProjectionsDsl"
-                implementationClass="solutions.sulfura.projectionsdslintellijplugin.ProjectionsDslParserDefinition"/>
+                implementationClass="solutions.sulfura.projectionsdslintellijplugin.language.ProjectionsDslParserDefinition"/>
         <lang.syntaxHighlighterFactory
                 language="DtoProjectionsDsl"
                 implementationClass="solutions.sulfura.projectionsdslintellijplugin.syntaxhighlighting.ProjectionsDslSyntaxHighlighterFactory"/>
         <colorSettingsPage
                 implementation="solutions.sulfura.projectionsdslintellijplugin.syntaxhighlighting.ProjectionsDslColorSettingsPage"/>
-<!--        <annotator-->
-<!--                language="JAVA"-->
-<!--                implementationClass="solutions.sulfura.projectionsdslintellijplugin.utils.ProjectionsDslAnnotator"/>-->
         <completion.contributor
                 implementationClass="solutions.sulfura.projectionsdslintellijplugin.utils.ProjectionsDslCompletionContributor"
                 language="DtoProjectionsDsl"/>

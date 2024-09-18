@@ -1,4 +1,4 @@
-package solutions.sulfura.projectionsdslintellijplugin;
+package solutions.sulfura.projectionsdslintellijplugin.language;
 
 import com.intellij.extapi.psi.PsiFileBase;
 import com.intellij.lang.Language;

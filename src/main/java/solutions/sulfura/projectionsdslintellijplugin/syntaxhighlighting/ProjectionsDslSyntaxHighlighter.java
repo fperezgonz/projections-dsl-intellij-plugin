@@ -7,7 +7,7 @@ import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.openapi.fileTypes.SyntaxHighlighterBase;
 import com.intellij.psi.tree.IElementType;
 import org.jetbrains.annotations.NotNull;
-import solutions.sulfura.projectionsdslintellijplugin.lexer.ProjectionsDslLexerAdapter;
+import solutions.sulfura.projectionsdslintellijplugin.language.ProjectionsDslLexerAdapter;
 import solutions.sulfura.projectionsdslintellijplugin.psi.SimpleTypes;
 
 import static com.intellij.openapi.editor.colors.TextAttributesKey.createTextAttributesKey;

@@ -1,4 +1,4 @@
-package solutions.sulfura.projectionsdslintellijplugin;
+package solutions.sulfura.projectionsdslintellijplugin.language;
 
 import com.intellij.lang.ASTNode;
 import com.intellij.lang.ParserDefinition;
@@ -11,7 +11,6 @@ import com.intellij.psi.PsiFile;
 import com.intellij.psi.tree.IFileElementType;
 import com.intellij.psi.tree.TokenSet;
 import org.jetbrains.annotations.NotNull;
-import solutions.sulfura.projectionsdslintellijplugin.lexer.ProjectionsDslLexerAdapter;
 import solutions.sulfura.projectionsdslintellijplugin.psi.ProjectionsDslParser;
 import solutions.sulfura.projectionsdslintellijplugin.psi.SimpleTypes;
 

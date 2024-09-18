@@ -43,7 +43,6 @@ public class ProjectionsDslReference extends PsiReferenceBase<PsiElement> {
 
         PsiField psiField = Arrays.stream(fields)
                 .filter(field -> {
-                    System.out.println(fieldName + " " + field.getName());
                     return field.getName().contains(fieldName);
                 })
                 .findFirst().orElse(null);

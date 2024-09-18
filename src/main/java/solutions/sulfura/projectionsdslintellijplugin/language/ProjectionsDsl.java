@@ -1,7 +1,6 @@
-package solutions.sulfura.projectionsdslintellijplugin;
+package solutions.sulfura.projectionsdslintellijplugin.language;
 
 import com.intellij.lang.Language;
-import org.jetbrains.annotations.NotNull;
 
 public class ProjectionsDsl extends Language {
 
