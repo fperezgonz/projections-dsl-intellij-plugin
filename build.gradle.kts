@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "solutions.sulfura"
-version = "1.0-RELEASE"
+version = "1.1-RELEASE"
 
 apply(from = "config/settings.env.gradle.kts")
 
@@ -35,7 +35,7 @@ dependencies {
 intellij {
     version.set("2023.2.6")
     type.set("IC") // Target IDE Platform
-    plugins.set(listOf("com.intellij.java"))
+    plugins.set(listOf("com.intellij.java", "org.intellij.intelliLang"))
 }
 
 sourceSets["main"].java.srcDirs("src/main/gen")

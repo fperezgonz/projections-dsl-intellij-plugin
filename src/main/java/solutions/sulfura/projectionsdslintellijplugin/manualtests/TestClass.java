@@ -1,6 +1,7 @@
 package solutions.sulfura.projectionsdslintellijplugin.manualtests;
 
 import io.vavr.control.Option;
+import solutions.sulfura.gend.dsl.projections.DtoProjectionSpec;
 import solutions.sulfura.gend.dtos.Dto;
 import solutions.sulfura.gend.dtos.ListOperation;
 
@@ -9,8 +10,7 @@ import java.util.Optional;
 
 public class TestClass {
 
-
-    @TestAnnotation(projectedClass = TestDto.class, value = """
+    @DtoProjectionSpec(projectedClass = TestDto.class, value = """
             {
             listTestDto ,
             
@@ -34,7 +34,7 @@ public class TestClass {
             listString, optionTestDto
                   }
             """)
-    public TestDto testMethod(@TestAnnotation(projectedClass = TestDto.class, value = "{listTestDto, optionalString}") TestDto testParam) {
+    public TestDto testMethod(@DtoProjectionSpec(projectedClass = TestDto.class, value = "{listTestDto, optionalString}") TestDto testParam) {
 
         return null;
     }
