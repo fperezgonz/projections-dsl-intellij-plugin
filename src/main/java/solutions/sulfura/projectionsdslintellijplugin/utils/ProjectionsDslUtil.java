@@ -268,7 +268,7 @@ public class ProjectionsDslUtil {
                 .orElse(null);
 
         //If the projected class is defined in the annotation, return that class
-        if (projectedClassAttribute instanceof JvmAnnotationClassValue projectedClass
+        if (projectedClassAttribute != null && projectedClassAttribute.getAttributeValue() instanceof JvmAnnotationClassValue projectedClass
                 && projectedClass.getClazz() instanceof PsiClass psiClass) {
             return PsiTypesUtil.getClassType(psiClass);
         }
