@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "solutions.sulfura"
-version = "1.1-RELEASE"
+version = "1.2-RELEASE"
 
 apply(from = "config/settings.env.gradle.kts")
 
@@ -25,8 +25,8 @@ repositories {
 }
 
 dependencies {
-    implementation("solutions.sulfura:gen-d-api:1.1.0-RELEASE")
-    implementation("solutions.sulfura:gen-d-projections-dsl:1.1.0-RELEASE")
+    implementation("solutions.sulfura:gen-d-api:1.2.0-SNAPSHOT")
+    implementation("solutions.sulfura:gen-d-projections-dsl:1.2.0-SNAPSHOT")
     implementation("io.vavr:vavr:0.10.4")
 }
 
