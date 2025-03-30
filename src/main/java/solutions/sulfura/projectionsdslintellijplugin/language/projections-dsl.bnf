@@ -16,7 +16,7 @@
 }
 
 
-projectionRoot ::= SPACE* projection SPACE*
+projectionRoot ::= SPACE* (projection|projectionContent) (SEPARATOR|SPACE)*
 
 projection ::= PROJECTION_START SPACE* projectionContent SPACE* (SEPARATOR SPACE*)? PROJECTION_END
 
