@@ -6,7 +6,8 @@ import org.jetbrains.annotations.NotNull;
 
 public class ProjectionsDslPsiUtil {
 
-    public static PsiReference @NotNull [] getReferences(PsiElement thisElement) {
+    @NotNull
+    public static PsiReference[] getReferences(PsiElement thisElement) {
         //This is what makes the ProjectionsDslReferenceProvider work
         return com.intellij.psi.impl.source.resolve.reference.ReferenceProvidersRegistry.getReferencesFromProviders(thisElement);
     }

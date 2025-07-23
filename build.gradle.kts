@@ -1,41 +1,33 @@
 plugins {
     id("java")
     id("org.jetbrains.kotlin.jvm") version "1.9.25"
-    id("org.jetbrains.intellij") version "1.17.4"
+    id("org.jetbrains.intellij.platform") version "2.6.0"
 }
 
 group = "solutions.sulfura"
-version = "1.3-RELEASE"
+version = "1.4-RELEASE"
 
-apply(from = "config/settings.env.gradle.kts")
+apply(from = "config/env.gradle.kts")
 
 repositories {
     mavenLocal()
     mavenCentral()
+    intellijPlatform {
+        defaultRepositories()
+    }
     maven {
-        url = uri("https://gitlab.com/api/v4/projects/46985246/packages/maven")
-        credentials(HttpHeaderCredentials::class) {
-            name = properties.getOrDefault("mavenTokenName", "Job-Token").toString()
-            value = properties.getOrDefault("mavenTokenValue", System.getenv("CI_JOB_TOKEN")).toString()
-        }
-        authentication {
-            create<HttpHeaderAuthentication>("header")
-        }
+        url = uri("https://public-package-registry.sulfura.solutions/")
     }
 }
 
 dependencies {
-    implementation("solutions.sulfura:gen-d-api:1.2.0-SNAPSHOT")
-    implementation("solutions.sulfura:gen-d-projections-dsl:1.2.0-SNAPSHOT")
-    implementation("io.vavr:vavr:0.10.4")
-}
+    implementation("solutions.sulfura:hyperkit-dto-api:5.0.0-SNAPSHOT")
+    implementation("solutions.sulfura:hyperkit-projections-dsl:5.0.0-SNAPSHOT")
 
-// Configure Gradle IntelliJ Plugin
-// Read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
-intellij {
-    version.set("2023.2.6")
-    type.set("IC") // Target IDE Platform
-    plugins.set(listOf("com.intellij.java", "org.intellij.intelliLang"))
+    intellijPlatform {
+        create("IC", "2025.1.3")
+        bundledPlugins("com.intellij.java", "org.intellij.intelliLang")
+    }
 }
 
 sourceSets["main"].java.srcDirs("src/main/gen")
@@ -50,19 +42,29 @@ tasks {
     withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
         kotlinOptions.jvmTarget = "17"
     }
+}
 
-    patchPluginXml {
-        sinceBuild.set("232")
-        untilBuild.set("")
+// Configure plugin metadata
+intellijPlatform {
+    pluginConfiguration {
+        // In v2, we need to configure the plugin.xml content
+        id.set("solutions.sulfura.projections-dsl-intellij-plugin")
+        name.set("Projections Dsl")
+        description.set("Provides syntax highlighting, autocompletion and navigation for hyperkit DtoProjectionSpec annotations")
+
+        // Compatibility range
+        ideaVersion {
+            sinceBuild.set("251")
+        }
     }
 
-    signPlugin {
+    signing {
         certificateChain.set(System.getenv(file("config/chain.crt").readText()))
         privateKey.set(System.getenv(file("config/private.pem").readText()))
         password.set(project.properties.getOrDefault("PRIVATE_KEY_PASSWORD", "").toString())
     }
 
-    publishPlugin {
+    publishing {
         token.set(project.properties.getOrDefault("PUBLISH_TOKEN", "").toString())
     }
 

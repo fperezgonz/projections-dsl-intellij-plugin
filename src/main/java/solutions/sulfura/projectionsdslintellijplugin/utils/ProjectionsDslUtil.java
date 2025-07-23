@@ -8,16 +8,15 @@ import com.intellij.psi.*;
 import com.intellij.psi.search.GlobalSearchScope;
 import com.intellij.psi.util.PsiTypesUtil;
 import com.intellij.psi.util.PsiUtil;
-import io.vavr.control.Option;
 import org.jetbrains.annotations.NotNull;
-import solutions.sulfura.gend.dtos.ListOperation;
+import solutions.sulfura.hyperkit.dtos.ListOperation;
+import solutions.sulfura.hyperkit.dtos.ValueWrapper;
 import solutions.sulfura.projectionsdslintellijplugin.psi.ProjectionsDslProjection;
 import solutions.sulfura.projectionsdslintellijplugin.psi.ProjectionsDslPropertyName;
 
 import java.util.*;
 
 public class ProjectionsDslUtil {
-
 
     public static PsiAnnotation getContextAnnotation(@NotNull PsiElement element) {
 
@@ -224,7 +223,7 @@ public class ProjectionsDslUtil {
         String qualifiedName = psiClass.getQualifiedName();
 
         JavaPsiFacade javaPsiFacade = JavaPsiFacade.getInstance(psiClass.getProject());
-        PsiClass dtoPsiClass = javaPsiFacade.findClass(solutions.sulfura.gend.dtos.Dto.class.getCanonicalName(), GlobalSearchScope.allScope(psiClass.getProject()));
+        PsiClass dtoPsiClass = javaPsiFacade.findClass(solutions.sulfura.hyperkit.dtos.Dto.class.getCanonicalName(), GlobalSearchScope.allScope(psiClass.getProject()));
 
         if (dtoPsiClass == null) {
             //It is pointless, The project is not using gen-d
@@ -237,7 +236,7 @@ public class ProjectionsDslUtil {
         }
 
         //If it is nested within a known generic type, search for the Dto type in the parameterized type
-        if (Objects.equals(qualifiedName, Option.class.getCanonicalName())
+        if (Objects.equals(qualifiedName, ValueWrapper.class.getCanonicalName())
                 || Objects.equals(qualifiedName, Optional.class.getCanonicalName())
                 || Objects.equals(qualifiedName, ListOperation.class.getCanonicalName())
                 || collectionPsiType.isAssignableFrom(psiClassType)) {
@@ -310,7 +309,7 @@ public class ProjectionsDslUtil {
 
         //Find The projected class for the root of the Dsl text
         JavaPsiFacade javaPsiFacade = JavaPsiFacade.getInstance(psiAnnotation.getProject());
-        PsiClass dtoPsiClass = javaPsiFacade.findClass(solutions.sulfura.gend.dtos.Dto.class.getCanonicalName(), GlobalSearchScope.allScope(psiAnnotation.getProject()));
+        PsiClass dtoPsiClass = javaPsiFacade.findClass(solutions.sulfura.hyperkit.dtos.Dto.class.getCanonicalName(), GlobalSearchScope.allScope(psiAnnotation.getProject()));
 
         if (dtoPsiClass == null || !PsiTypesUtil.getClassType(dtoPsiClass).isAssignableFrom(psiClassType)) {
             return null;

@@ -49,3 +49,6 @@ bin/
 ### Environment settings ###
 /config/**
 !/config/*.dist
+
+### IntelliJ Platform Plugin ###
+.intellijPlatform

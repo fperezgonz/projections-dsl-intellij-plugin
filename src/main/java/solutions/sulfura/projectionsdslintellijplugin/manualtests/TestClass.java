@@ -1,9 +1,9 @@
 package solutions.sulfura.projectionsdslintellijplugin.manualtests;
 
-import io.vavr.control.Option;
-import solutions.sulfura.gend.dsl.projections.DtoProjectionSpec;
-import solutions.sulfura.gend.dtos.Dto;
-import solutions.sulfura.gend.dtos.ListOperation;
+import solutions.sulfura.hyperkit.dsl.projections.DtoProjectionSpec;
+import solutions.sulfura.hyperkit.dtos.Dto;
+import solutions.sulfura.hyperkit.dtos.ListOperation;
+import solutions.sulfura.hyperkit.dtos.ValueWrapper;
 
 import java.util.List;
 import java.util.Optional;
@@ -41,10 +41,10 @@ public class TestClass {
 
     public static class TestDto implements Dto {
         String plainString;
-        Option<String> optionString;
+        ValueWrapper<String> optionString;
         Optional<String> optionalString;
         List<String> listString;
-        Option<TestDto> optionTestDto;
+        ValueWrapper<TestDto> optionTestDto;
         List<ListOperation<TestDto>> listTestDto;
         Optional<NestedTestDto> nestedNestedTestDto;
 
@@ -55,7 +55,7 @@ public class TestClass {
     }
 
     public static class NestedTestDto implements Dto {
-        Option<TestDto> nestedTestDto;
+        ValueWrapper<TestDto> nestedTestDto;
         String nestedPlainString;
 
         @Override

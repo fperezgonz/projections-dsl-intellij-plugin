@@ -42,7 +42,7 @@ public class ProjectionsDslSyntaxHighlighter extends SyntaxHighlighterBase {
     @Override
     public TextAttributesKey @NotNull [] getTokenHighlights(IElementType tokenType) {
 
-        if(tokenType.equals(SimpleTypes.PROJECTION)){
+        if (tokenType.equals(SimpleTypes.PROJECTION)) {
             return PROJECTION_KEYS;
         }
         if (tokenType.equals(SimpleTypes.SEPARATOR)) {

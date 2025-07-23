@@ -2,6 +2,6 @@
 <component name="LanguageInjectionConfiguration">
   <injection language="DtoProjectionsDsl" injector-id="java">
     <display-name>DtoProjection</display-name>
-    <place><![CDATA[psiMethod().withName("value").definedInClass("solutions.sulfura.gend.dsl.projections.DtoProjectionSpec")]]></place>
+    <place><![CDATA[psiMethod().withName("value").definedInClass("solutions.sulfura.hyperkit.dsl.projections.DtoProjectionSpec")]]></place>
   </injection>
 </component>
