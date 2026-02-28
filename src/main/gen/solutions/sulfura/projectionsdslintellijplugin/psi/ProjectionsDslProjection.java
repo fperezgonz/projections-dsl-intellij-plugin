@@ -10,4 +10,7 @@ public interface ProjectionsDslProjection extends PsiElement {
   @NotNull
   ProjectionsDslProjectionContentContainer getProjectionContentContainer();
 
+  @NotNull
+  List<ProjectionsDslProjectionTypeAlias> getProjectionTypeAliasList();
+
 }

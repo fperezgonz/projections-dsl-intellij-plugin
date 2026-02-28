@@ -1,12 +1,30 @@
+<!--<list>-->
+<!--    <option name="PROPERTY_ALIAS">-->
+<!--        <value>-->
+<!--            <option name="FOREGROUND" value="E16CFA"/>-->
+<!--        </value>-->
+<!--    </option>-->
+<!--    <option name="TYPE_ALIAS">-->
+<!--        <value>-->
+<!--            <option name="FOREGROUND" value="DCBD5C"/>-->
+<!--        </value>-->
+<!--    </option>-->
+<!--</list>-->
+<!--DEBUG COLORS-->
 <list>
-    <option name="PROPERTY_ALIAS">
+    <option name="PROPERTY_NAME">
         <value>
-            <option name="FOREGROUND" value="E16CFA"/>
+            <option name="FOREGROUND" value="B7A26F"/>
         </value>
     </option>
-    <option name="TYPE_ALIAS">
+    <option name="PROPERTY_ALIAS_LITERAL">
         <value>
-            <option name="FOREGROUND" value="DCBD5C"/>
+            <option name="FOREGROUND" value="BCBEC4"/>
+        </value>
+    </option>
+    <option name="PROJECTION_TYPE_ALIAS_LITERAL">
+        <value>
+            <option name="FOREGROUND" value="AF876F"/>
         </value>
     </option>
 </list>

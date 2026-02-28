@@ -5,12 +5,6 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface ProjectionsDslPropertyDecl extends PsiElement {
-
-  @Nullable
-  ProjectionsDslProjection getProjection();
-
-  @Nullable
-  ProjectionsDslPropertyAlias getPropertyAlias();
+public interface ProjectionsDslPropertyAlias extends PsiElement {
 
 }

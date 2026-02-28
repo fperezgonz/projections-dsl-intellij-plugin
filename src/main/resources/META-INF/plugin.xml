@@ -32,6 +32,9 @@
                 implementationClass="solutions.sulfura.projectionsdslintellijplugin.references.ProjectionsDslPropertyNameManipulator"
                 forClass="solutions.sulfura.projectionsdslintellijplugin.psi.impl.ProjectionsDslPropertyNameImpl"/>
         <additionalTextAttributes
+                scheme="High contrast"
+                file="color_schemes/ProjectionsDslHigh_contrast.xml"/>
+        <additionalTextAttributes
                 scheme="Default"
                 file="color_schemes/ProjectionsDslDefault.xml"/>
         <additionalTextAttributes

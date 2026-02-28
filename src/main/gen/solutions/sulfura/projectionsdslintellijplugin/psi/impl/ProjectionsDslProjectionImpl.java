@@ -33,4 +33,10 @@ public class ProjectionsDslProjectionImpl extends ASTWrapperPsiElement implement
     return findNotNullChildByClass(ProjectionsDslProjectionContentContainer.class);
   }
 
+  @Override
+  @NotNull
+  public List<ProjectionsDslProjectionTypeAlias> getProjectionTypeAliasList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, ProjectionsDslProjectionTypeAlias.class);
+  }
+
 }

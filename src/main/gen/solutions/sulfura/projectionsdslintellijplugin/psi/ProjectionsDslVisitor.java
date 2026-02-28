@@ -19,6 +19,14 @@ public class ProjectionsDslVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitProjectionTypeAlias(@NotNull ProjectionsDslProjectionTypeAlias o) {
+    visitPsiElement(o);
+  }
+
+  public void visitPropertyAlias(@NotNull ProjectionsDslPropertyAlias o) {
+    visitPsiElement(o);
+  }
+
   public void visitPropertyDecl(@NotNull ProjectionsDslPropertyDecl o) {
     visitPsiElement(o);
   }

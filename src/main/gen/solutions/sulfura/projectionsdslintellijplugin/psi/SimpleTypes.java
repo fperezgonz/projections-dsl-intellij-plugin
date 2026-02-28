@@ -11,12 +11,16 @@ public interface SimpleTypes {
   IElementType PROJECTION = new ProjectionsDslElementType("PROJECTION");
   IElementType PROJECTION_CONTENT = new ProjectionsDslElementType("PROJECTION_CONTENT");
   IElementType PROJECTION_CONTENT_CONTAINER = new ProjectionsDslElementType("PROJECTION_CONTENT_CONTAINER");
+  IElementType PROJECTION_TYPE_ALIAS = new ProjectionsDslElementType("PROJECTION_TYPE_ALIAS");
+  IElementType PROPERTY_ALIAS = new ProjectionsDslElementType("PROPERTY_ALIAS");
   IElementType PROPERTY_DECL = new ProjectionsDslElementType("PROPERTY_DECL");
 
+  IElementType AS_KEYWORD = new ProjectionsDslTokenType("AS_KEYWORD");
+  IElementType COLON = new ProjectionsDslTokenType("COLON");
   IElementType PROJECTION_CONTAINER_END_CHAR = new ProjectionsDslTokenType("PROJECTION_CONTAINER_END_CHAR");
   IElementType PROJECTION_CONTAINER_START_CHAR = new ProjectionsDslTokenType("PROJECTION_CONTAINER_START_CHAR");
-  IElementType PROJECTION_TYPE_ALIAS = new ProjectionsDslTokenType("PROJECTION_TYPE_ALIAS");
-  IElementType PROPERTY_ALIAS = new ProjectionsDslTokenType("PROPERTY_ALIAS");
+  IElementType PROJECTION_TYPE_ALIAS_LITERAL = new ProjectionsDslTokenType("PROJECTION_TYPE_ALIAS_LITERAL");
+  IElementType PROPERTY_ALIAS_LITERAL = new ProjectionsDslTokenType("PROPERTY_ALIAS_LITERAL");
   IElementType PROPERTY_NAME = new ProjectionsDslTokenType("PROPERTY_NAME");
   IElementType SEPARATOR = new ProjectionsDslTokenType("SEPARATOR");
   IElementType SPACE = new ProjectionsDslTokenType("SPACE");
@@ -32,6 +36,12 @@ public interface SimpleTypes {
       }
       else if (type == PROJECTION_CONTENT_CONTAINER) {
         return new ProjectionsDslProjectionContentContainerImpl(node);
+      }
+      else if (type == PROJECTION_TYPE_ALIAS) {
+        return new ProjectionsDslProjectionTypeAliasImpl(node);
+      }
+      else if (type == PROPERTY_ALIAS) {
+        return new ProjectionsDslPropertyAliasImpl(node);
       }
       else if (type == PROPERTY_DECL) {
         return new ProjectionsDslPropertyDeclImpl(node);

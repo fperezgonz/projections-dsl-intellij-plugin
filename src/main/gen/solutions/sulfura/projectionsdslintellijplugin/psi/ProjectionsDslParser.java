@@ -36,7 +36,7 @@ public class ProjectionsDslParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // PROJECTION_TYPE_ALIAS? SPACE* projectionContentContainer SPACE* (PROJECTION_TYPE_ALIAS)?
+  // projectionTypeAlias? SPACE* projectionContentContainer SPACE* (projectionTypeAlias)?
   public static boolean projection(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "projection")) return false;
     boolean r;
@@ -50,10 +50,10 @@ public class ProjectionsDslParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // PROJECTION_TYPE_ALIAS?
+  // projectionTypeAlias?
   private static boolean projection_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "projection_0")) return false;
-    consumeToken(b, PROJECTION_TYPE_ALIAS);
+    projectionTypeAlias(b, l + 1);
     return true;
   }
 
@@ -79,11 +79,21 @@ public class ProjectionsDslParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // (PROJECTION_TYPE_ALIAS)?
+  // (projectionTypeAlias)?
   private static boolean projection_4(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "projection_4")) return false;
-    consumeToken(b, PROJECTION_TYPE_ALIAS);
+    projection_4_0(b, l + 1);
     return true;
+  }
+
+  // (projectionTypeAlias)
+  private static boolean projection_4_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "projection_4_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = projectionTypeAlias(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
   }
 
   /* ********************************************************** */
@@ -253,7 +263,63 @@ public class ProjectionsDslParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // PROPERTY_NAME SPACE* PROPERTY_ALIAS? SPACE* projection?
+  // COLON SPACE * PROJECTION_TYPE_ALIAS_LITERAL
+  public static boolean projectionTypeAlias(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "projectionTypeAlias")) return false;
+    if (!nextTokenIs(b, COLON)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, COLON);
+    r = r && projectionTypeAlias_1(b, l + 1);
+    r = r && consumeToken(b, PROJECTION_TYPE_ALIAS_LITERAL);
+    exit_section_(b, m, PROJECTION_TYPE_ALIAS, r);
+    return r;
+  }
+
+  // SPACE *
+  private static boolean projectionTypeAlias_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "projectionTypeAlias_1")) return false;
+    while (true) {
+      int c = current_position_(b);
+      if (!consumeToken(b, SPACE)) break;
+      if (!empty_element_parsed_guard_(b, "projectionTypeAlias_1", c)) break;
+    }
+    return true;
+  }
+
+  /* ********************************************************** */
+  // AS_KEYWORD? SPACE * PROPERTY_ALIAS_LITERAL
+  public static boolean propertyAlias(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "propertyAlias")) return false;
+    boolean r;
+    Marker m = enter_section_(b, l, _NONE_, PROPERTY_ALIAS, "<property alias>");
+    r = propertyAlias_0(b, l + 1);
+    r = r && propertyAlias_1(b, l + 1);
+    r = r && consumeToken(b, PROPERTY_ALIAS_LITERAL);
+    exit_section_(b, l, m, r, false, null);
+    return r;
+  }
+
+  // AS_KEYWORD?
+  private static boolean propertyAlias_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "propertyAlias_0")) return false;
+    consumeToken(b, AS_KEYWORD);
+    return true;
+  }
+
+  // SPACE *
+  private static boolean propertyAlias_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "propertyAlias_1")) return false;
+    while (true) {
+      int c = current_position_(b);
+      if (!consumeToken(b, SPACE)) break;
+      if (!empty_element_parsed_guard_(b, "propertyAlias_1", c)) break;
+    }
+    return true;
+  }
+
+  /* ********************************************************** */
+  // PROPERTY_NAME SPACE* propertyAlias? SPACE* projection?
   public static boolean propertyDecl(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "propertyDecl")) return false;
     if (!nextTokenIs(b, PROPERTY_NAME)) return false;
@@ -279,10 +345,10 @@ public class ProjectionsDslParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // PROPERTY_ALIAS?
+  // propertyAlias?
   private static boolean propertyDecl_2(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "propertyDecl_2")) return false;
-    consumeToken(b, PROPERTY_ALIAS);
+    propertyAlias(b, l + 1);
     return true;
   }
 

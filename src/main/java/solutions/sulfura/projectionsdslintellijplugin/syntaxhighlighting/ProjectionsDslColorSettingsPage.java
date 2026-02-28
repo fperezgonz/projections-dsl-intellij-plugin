@@ -15,8 +15,9 @@ public class ProjectionsDslColorSettingsPage implements ColorSettingsPage {
     private static final AttributesDescriptor[] DESCRIPTORS = new AttributesDescriptor[]{
             new AttributesDescriptor("Projection", ProjectionsDslSyntaxHighlighter.PROJECTION),
             new AttributesDescriptor("Property name", ProjectionsDslSyntaxHighlighter.PROPERTY_NAME),
-            new AttributesDescriptor("Property alias", ProjectionsDslSyntaxHighlighter.PROPERTY_ALIAS),
-            new AttributesDescriptor("Type alias", ProjectionsDslSyntaxHighlighter.TYPE_ALIAS),
+            new AttributesDescriptor("As keyword", ProjectionsDslSyntaxHighlighter.AS_KEYWORD),
+            new AttributesDescriptor("Property alias", ProjectionsDslSyntaxHighlighter.PROPERTY_ALIAS_LITERAL),
+            new AttributesDescriptor("Type alias", ProjectionsDslSyntaxHighlighter.PROJECTION_TYPE_ALIAS_LITERAL),
             new AttributesDescriptor("Separator", ProjectionsDslSyntaxHighlighter.SEPARATOR),
             new AttributesDescriptor("Braces", ProjectionsDslSyntaxHighlighter.BRACES),
             new AttributesDescriptor("Bad character", ProjectionsDslSyntaxHighlighter.BAD_CHARACTER)

@@ -1,17 +1,17 @@
 <list>
     <option name="PROPERTY_NAME">
         <value>
-            <option name="FOREGROUND" value="1F4577"/>
+            <option name="FOREGROUND" value="FFCC45"/>
         </value>
     </option>
     <option name="PROPERTY_ALIAS_LITERAL">
         <value>
-            <option name="FOREGROUND" value="383838"/>
+            <option name="FOREGROUND" value="CDCDCD"/>
         </value>
     </option>
     <option name="PROJECTION_TYPE_ALIAS_LITERAL">
         <value>
-            <option name="FOREGROUND" value="B45F2D"/>
+            <option name="FOREGROUND" value="FF8C46"/>
         </value>
     </option>
 </list>

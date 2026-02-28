@@ -22,11 +22,14 @@ public class _ProjectionsDslLexer implements FlexLexer {
   public static final int YYINITIAL = 0;
   public static final int AFTER_PROPERTY_ALIAS = 2;
   public static final int PROJECTION_CONTAINER_START = 4;
-  public static final int PROPERTY_DECLARATION_START = 6;
-  public static final int AFTER_PROPERTY_NAME = 8;
-  public static final int AFTER_PROJECTION_CONTAINER = 10;
-  public static final int AFTER_PROJECTION = 12;
-  public static final int AFTER_SEPARATOR = 14;
+  public static final int AWAITING_PROPERTY_NAME = 6;
+  public static final int AWAITING_PROPERTY_ALIAS = 8;
+  public static final int AWAITING_TYPE_ALIAS_BEFORE_PROJECTION = 10;
+  public static final int AWAITING_TYPE_ALIAS_AFTER_PROJECTION = 12;
+  public static final int AFTER_PROPERTY_NAME = 14;
+  public static final int AFTER_PROJECTION_CONTAINER = 16;
+  public static final int AFTER_PROJECTION = 18;
+  public static final int AFTER_SEPARATOR = 20;
 
   /**
    * ZZ_LEXSTATE[l] is the state in the DFA for the lexical state l
@@ -35,7 +38,8 @@ public class _ProjectionsDslLexer implements FlexLexer {
    * l is of the form l = 2*k, k a non negative integer
    */
   private static final int ZZ_LEXSTATE[] = {
-     0,  0,  1,  1,  2,  2,  3,  3,  4,  4,  5,  5,  6,  6,  7, 7
+     0,  0,  1,  1,  2,  2,  3,  3,  4,  4,  5,  5,  6,  6,  7,  7, 
+     8,  8,  9,  9, 10, 10
   };
 
   /**
@@ -73,10 +77,10 @@ public class _ProjectionsDslLexer implements FlexLexer {
 
   private static final String ZZ_CMAP_BLOCKS_PACKED_0 =
     "\11\0\1\1\1\2\2\3\1\4\22\0\1\1\13\0"+
-    "\1\5\15\0\1\6\46\0\1\7\21\0\1\10\7\0"+
-    "\1\11\1\0\1\12\7\0\1\3\32\0\1\3\u01df\0"+
-    "\1\3\177\0\13\3\35\0\2\3\5\0\1\3\57\0"+
-    "\1\3\240\0\1\3\377\0";
+    "\1\5\15\0\1\6\6\0\1\7\21\0\1\10\15\0"+
+    "\1\11\21\0\1\12\7\0\1\13\1\0\1\14\7\0"+
+    "\1\3\32\0\1\3\u01df\0\1\3\177\0\13\3\35\0"+
+    "\2\3\5\0\1\3\57\0\1\3\240\0\1\3\377\0";
 
   private static int [] zzUnpackcmap_blocks() {
     int [] result = new int[1280];
@@ -103,12 +107,12 @@ public class _ProjectionsDslLexer implements FlexLexer {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\10\0\1\1\2\2\1\3\1\2\1\3\1\4\2\5"+
-    "\1\6\2\7\2\10\1\3\1\11\1\0\1\7\1\12"+
-    "\2\0";
+    "\13\0\1\1\2\2\1\3\1\2\1\4\1\5\2\6"+
+    "\1\7\1\10\1\11\1\12\2\10\2\13\1\14\1\15"+
+    "\1\16";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[29];
+    int [] result = new int[31];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -133,13 +137,13 @@ public class _ProjectionsDslLexer implements FlexLexer {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\13\0\26\0\41\0\54\0\67\0\102\0\115"+
-    "\0\130\0\143\0\156\0\156\0\171\0\204\0\156\0\156"+
-    "\0\217\0\156\0\232\0\245\0\156\0\260\0\273\0\306"+
-    "\0\204\0\321\0\334\0\273\0\321";
+    "\0\0\0\15\0\32\0\47\0\64\0\101\0\116\0\133"+
+    "\0\150\0\165\0\202\0\217\0\234\0\251\0\251\0\266"+
+    "\0\251\0\251\0\251\0\303\0\251\0\320\0\335\0\352"+
+    "\0\367\0\u0104\0\251\0\u0111\0\251\0\251\0\320";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[29];
+    int [] result = new int[31];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -162,24 +166,25 @@ public class _ProjectionsDslLexer implements FlexLexer {
   private static final int [] ZZ_TRANS = zzUnpacktrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\11\1\12\1\13\1\14\1\15\1\14\1\16\2\11"+
-    "\1\17\2\14\1\12\1\20\1\14\1\21\1\20\1\16"+
-    "\2\14\1\17\1\22\1\14\1\12\1\13\1\14\1\15"+
-    "\4\14\1\17\1\14\1\11\1\12\1\13\1\14\1\15"+
-    "\2\14\2\11\2\14\1\23\1\12\1\20\1\14\1\21"+
-    "\1\20\1\16\1\24\1\23\1\17\1\22\1\14\1\12"+
-    "\1\25\1\14\1\26\1\25\1\27\2\14\1\17\1\22"+
-    "\1\11\1\12\1\13\1\14\1\15\1\20\1\14\2\11"+
-    "\1\14\1\22\1\11\1\12\1\13\1\14\1\15\2\14"+
-    "\2\11\1\14\1\22\1\11\6\0\2\11\3\0\1\12"+
-    "\26\0\1\13\10\0\1\30\1\31\4\0\3\30\4\0"+
-    "\1\20\10\0\1\23\6\0\2\23\2\0\1\23\6\0"+
-    "\1\23\1\32\4\0\1\25\10\0\1\33\1\34\4\0"+
-    "\3\33\2\0\1\30\5\0\3\30\2\0\1\23\1\35"+
-    "\5\0\2\23\2\0\1\33\5\0\3\33\2\0";
+    "\1\14\1\15\1\16\1\17\1\20\1\17\1\21\4\14"+
+    "\1\22\2\17\1\15\1\23\1\17\1\24\1\23\1\21"+
+    "\4\17\1\22\1\25\1\17\1\15\1\16\1\17\1\20"+
+    "\6\17\1\22\1\17\1\14\1\15\1\16\1\17\1\20"+
+    "\2\17\4\14\2\17\1\26\1\15\5\17\4\26\2\17"+
+    "\1\27\1\15\5\17\4\27\2\17\1\30\1\15\5\17"+
+    "\4\30\2\17\1\26\1\15\1\23\1\17\1\24\1\23"+
+    "\1\21\1\31\1\26\1\32\1\26\1\22\1\25\1\17"+
+    "\1\15\1\33\1\17\1\34\1\33\1\35\5\17\1\36"+
+    "\1\14\1\15\1\16\1\17\1\20\1\23\1\17\4\14"+
+    "\1\17\1\25\1\14\1\15\1\16\1\17\1\20\2\17"+
+    "\4\14\1\17\1\25\1\14\6\0\4\14\3\0\1\15"+
+    "\32\0\1\16\14\0\1\23\12\0\1\26\6\0\4\26"+
+    "\2\0\1\27\6\0\4\27\2\0\1\30\6\0\4\30"+
+    "\2\0\1\26\6\0\1\26\1\37\2\26\2\0\1\26"+
+    "\6\0\3\26\1\37\4\0\1\33\12\0";
 
   private static int [] zzUnpacktrans() {
-    int [] result = new int[231];
+    int [] result = new int[286];
     int offset = 0;
     offset = zzUnpacktrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -217,11 +222,11 @@ public class _ProjectionsDslLexer implements FlexLexer {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\10\0\2\1\2\11\2\1\2\11\1\1\1\11\2\1"+
-    "\1\11\3\1\1\0\2\1\2\0";
+    "\13\0\2\1\2\11\1\1\3\11\1\1\1\11\5\1"+
+    "\1\11\1\1\2\11\1\1";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[29];
+    int [] result = new int[31];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -539,52 +544,72 @@ public class _ProjectionsDslLexer implements FlexLexer {
             { yybegin(AFTER_PROPERTY_NAME); return PROPERTY_NAME;
             }
           // fall through
-          case 11: break;
+          case 15: break;
           case 2:
             { return SPACE;
             }
           // fall through
-          case 12: break;
+          case 16: break;
           case 3:
             { return BAD_CHARACTER;
             }
           // fall through
-          case 13: break;
-          case 4:
-            { yybegin(PROPERTY_DECLARATION_START); return PROJECTION_CONTAINER_START_CHAR;
-            }
-          // fall through
-          case 14: break;
-          case 5:
-            { yybegin(AFTER_SEPARATOR); return SEPARATOR;
-            }
-          // fall through
-          case 15: break;
-          case 6:
-            { yybegin(AFTER_PROJECTION_CONTAINER); return PROJECTION_CONTAINER_END_CHAR;
-            }
-          // fall through
-          case 16: break;
-          case 7:
-            { yybegin(AFTER_PROPERTY_ALIAS); return PROPERTY_ALIAS;
-            }
-          // fall through
           case 17: break;
-          case 8:
-            { yybegin(AFTER_PROJECTION); return SEPARATOR;
+          case 4:
+            { yybegin(AWAITING_TYPE_ALIAS_BEFORE_PROJECTION); return COLON;
             }
           // fall through
           case 18: break;
-          case 9:
-            { yybegin(PROJECTION_CONTAINER_START); return PROJECTION_TYPE_ALIAS;
+          case 5:
+            { yybegin(AWAITING_PROPERTY_NAME); return PROJECTION_CONTAINER_START_CHAR;
             }
           // fall through
           case 19: break;
-          case 10:
-            { yybegin(AFTER_PROJECTION); return PROJECTION_TYPE_ALIAS;
+          case 6:
+            { yybegin(AFTER_SEPARATOR); return SEPARATOR;
             }
           // fall through
           case 20: break;
+          case 7:
+            { yybegin(AFTER_PROJECTION_CONTAINER); return PROJECTION_CONTAINER_END_CHAR;
+            }
+          // fall through
+          case 21: break;
+          case 8:
+            { yybegin(AFTER_PROPERTY_ALIAS); return PROPERTY_ALIAS_LITERAL;
+            }
+          // fall through
+          case 22: break;
+          case 9:
+            { yybegin(PROJECTION_CONTAINER_START); return PROJECTION_TYPE_ALIAS_LITERAL;
+            }
+          // fall through
+          case 23: break;
+          case 10:
+            { yybegin(AFTER_PROJECTION); return PROJECTION_TYPE_ALIAS_LITERAL;
+            }
+          // fall through
+          case 24: break;
+          case 11:
+            { yybegin(AFTER_PROJECTION); return SEPARATOR;
+            }
+          // fall through
+          case 25: break;
+          case 12:
+            { yybegin(AWAITING_TYPE_ALIAS_AFTER_PROJECTION); return COLON;
+            }
+          // fall through
+          case 26: break;
+          case 13:
+            { return PROJECTION_CONTAINER_END_CHAR;
+            }
+          // fall through
+          case 27: break;
+          case 14:
+            { yybegin(AWAITING_PROPERTY_ALIAS); return AS_KEYWORD;
+            }
+          // fall through
+          case 28: break;
           default:
             zzScanError(ZZ_NO_MATCH);
           }

@@ -19,13 +19,17 @@
 
 projectionRoot ::= SPACE* (projection|projectionContent) (SEPARATOR|SPACE)*
 
-projection ::= PROJECTION_TYPE_ALIAS? SPACE* projectionContentContainer SPACE* (PROJECTION_TYPE_ALIAS)?
+projection ::= projectionTypeAlias? SPACE* projectionContentContainer SPACE* (projectionTypeAlias)?
 
 projectionContentContainer ::= PROJECTION_CONTAINER_START_CHAR projectionContent PROJECTION_CONTAINER_END_CHAR
 
 projectionContent ::= (SPACE* propertyDecl SPACE* SEPARATOR)* (SPACE* propertyDecl )? SPACE*
 
-propertyDecl ::= PROPERTY_NAME SPACE* PROPERTY_ALIAS? SPACE* projection?
+propertyDecl ::= PROPERTY_NAME SPACE* propertyAlias? SPACE* projection?
+
+propertyAlias ::= AS_KEYWORD? SPACE * PROPERTY_ALIAS_LITERAL
+
+projectionTypeAlias ::= COLON SPACE * PROJECTION_TYPE_ALIAS_LITERAL
 
 {
     methods=[getReferences]
