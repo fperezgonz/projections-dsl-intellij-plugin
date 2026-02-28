@@ -28,6 +28,9 @@
         <psi.referenceContributor
                 implementation="solutions.sulfura.projectionsdslintellijplugin.references.ProjectionsDslReferenceContributor"
                 language="DtoProjectionsDsl"/>
+        <annotator
+                language="DtoProjectionsDsl"
+                implementationClass="solutions.sulfura.projectionsdslintellijplugin.annotator.MissingReferencesAnnotator"/>
         <lang.elementManipulator
                 implementationClass="solutions.sulfura.projectionsdslintellijplugin.references.ProjectionsDslPropertyNameManipulator"
                 forClass="solutions.sulfura.projectionsdslintellijplugin.psi.impl.ProjectionsDslPropertyDeclImpl"/>
