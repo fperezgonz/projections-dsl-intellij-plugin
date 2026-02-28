@@ -10,7 +10,6 @@ import com.intellij.psi.util.PsiTreeUtil;
 import static solutions.sulfura.projectionsdslintellijplugin.psi.SimpleTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import solutions.sulfura.projectionsdslintellijplugin.psi.*;
-import com.intellij.psi.PsiReference;
 
 public class ProjectionsDslProjectionTypeAliasImpl extends ASTWrapperPsiElement implements ProjectionsDslProjectionTypeAlias {
 
@@ -26,11 +25,6 @@ public class ProjectionsDslProjectionTypeAliasImpl extends ASTWrapperPsiElement 
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof ProjectionsDslVisitor) accept((ProjectionsDslVisitor)visitor);
     else super.accept(visitor);
-  }
-
-  @Override
-  public @NotNull PsiReference[] getReferences() {
-    return ProjectionsDslPsiUtil.getReferences(this);
   }
 
 }

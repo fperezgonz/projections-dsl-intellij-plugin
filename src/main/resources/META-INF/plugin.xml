@@ -30,7 +30,7 @@
                 language="DtoProjectionsDsl"/>
         <lang.elementManipulator
                 implementationClass="solutions.sulfura.projectionsdslintellijplugin.references.ProjectionsDslPropertyNameManipulator"
-                forClass="solutions.sulfura.projectionsdslintellijplugin.psi.impl.ProjectionsDslPropertyNameImpl"/>
+                forClass="solutions.sulfura.projectionsdslintellijplugin.psi.impl.ProjectionsDslPropertyDeclImpl"/>
         <additionalTextAttributes
                 scheme="High contrast"
                 file="color_schemes/ProjectionsDslHigh_contrast.xml"/>

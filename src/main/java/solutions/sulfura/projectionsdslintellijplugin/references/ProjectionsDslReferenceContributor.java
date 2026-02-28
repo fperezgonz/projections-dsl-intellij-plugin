@@ -4,7 +4,8 @@ import com.intellij.patterns.PlatformPatterns;
 import com.intellij.psi.*;
 import com.intellij.util.ProcessingContext;
 import org.jetbrains.annotations.NotNull;
-import solutions.sulfura.projectionsdslintellijplugin.psi.SimpleTypes;
+
+import static solutions.sulfura.projectionsdslintellijplugin.psi.SimpleTypes.PROPERTY_DECL;
 
 public class ProjectionsDslReferenceContributor extends PsiReferenceContributor {
 
@@ -12,7 +13,7 @@ public class ProjectionsDslReferenceContributor extends PsiReferenceContributor 
     public void registerReferenceProviders(PsiReferenceRegistrar registrar) {
 
         registrar.registerReferenceProvider(
-                PlatformPatterns.psiElement(SimpleTypes.PROPERTY_NAME),
+                PlatformPatterns.psiElement(PROPERTY_DECL),
                 new ProjectionsDslReferenceProvider()
         );
 

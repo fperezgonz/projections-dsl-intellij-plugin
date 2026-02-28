@@ -26,11 +26,10 @@ projectionContentContainer ::= PROJECTION_CONTAINER_START_CHAR projectionContent
 projectionContent ::= (SPACE* propertyDecl SPACE* SEPARATOR)* (SPACE* propertyDecl )? SPACE*
 
 propertyDecl ::= PROPERTY_NAME SPACE* propertyAlias? SPACE* projection?
+{
+    methods=[getReferences]
+}
 
 propertyAlias ::= AS_KEYWORD? SPACE * PROPERTY_ALIAS_LITERAL
 
 projectionTypeAlias ::= COLON SPACE * PROJECTION_TYPE_ALIAS_LITERAL
-
-{
-    methods=[getReferences]
-}
