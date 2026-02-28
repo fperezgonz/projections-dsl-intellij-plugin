@@ -20,7 +20,7 @@ public class _ProjectionsDslLexer implements FlexLexer {
 
   /** lexical states */
   public static final int YYINITIAL = 0;
-  public static final int PROJECTION_START = 2;
+  public static final int AFTER_PROPERTY_ALIAS = 2;
   public static final int PROJECTION_CONTAINER_START = 4;
   public static final int PROPERTY_DECLARATION_START = 6;
   public static final int AFTER_PROPERTY_NAME = 8;
@@ -103,9 +103,9 @@ public class _ProjectionsDslLexer implements FlexLexer {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\10\0\1\1\2\2\1\3\1\2\1\3\1\4\1\5"+
-    "\1\6\1\7\1\5\1\7\2\10\1\3\1\11\1\0"+
-    "\1\7\1\12\2\0";
+    "\10\0\1\1\2\2\1\3\1\2\1\3\1\4\2\5"+
+    "\1\6\2\7\2\10\1\3\1\11\1\0\1\7\1\12"+
+    "\2\0";
 
   private static int [] zzUnpackAction() {
     int [] result = new int[29];
@@ -135,7 +135,7 @@ public class _ProjectionsDslLexer implements FlexLexer {
   private static final String ZZ_ROWMAP_PACKED_0 =
     "\0\0\0\13\0\26\0\41\0\54\0\67\0\102\0\115"+
     "\0\130\0\143\0\156\0\156\0\171\0\204\0\156\0\156"+
-    "\0\156\0\217\0\232\0\245\0\156\0\260\0\273\0\306"+
+    "\0\217\0\156\0\232\0\245\0\156\0\260\0\273\0\306"+
     "\0\204\0\321\0\334\0\273\0\321";
 
   private static int [] zzUnpackRowMap() {
@@ -163,20 +163,20 @@ public class _ProjectionsDslLexer implements FlexLexer {
 
   private static final String ZZ_TRANS_PACKED_0 =
     "\1\11\1\12\1\13\1\14\1\15\1\14\1\16\2\11"+
-    "\1\17\2\14\1\12\1\13\1\14\1\15\1\20\1\16"+
-    "\2\14\1\17\1\21\1\14\1\12\1\13\1\14\1\15"+
+    "\1\17\2\14\1\12\1\20\1\14\1\21\1\20\1\16"+
+    "\2\14\1\17\1\22\1\14\1\12\1\13\1\14\1\15"+
     "\4\14\1\17\1\14\1\11\1\12\1\13\1\14\1\15"+
-    "\2\14\2\11\2\14\1\22\1\12\1\20\1\14\1\23"+
-    "\1\20\1\16\1\24\1\22\1\17\1\21\1\14\1\12"+
-    "\1\25\1\14\1\26\1\25\1\27\2\14\1\17\1\21"+
+    "\2\14\2\11\2\14\1\23\1\12\1\20\1\14\1\21"+
+    "\1\20\1\16\1\24\1\23\1\17\1\22\1\14\1\12"+
+    "\1\25\1\14\1\26\1\25\1\27\2\14\1\17\1\22"+
     "\1\11\1\12\1\13\1\14\1\15\1\20\1\14\2\11"+
-    "\1\14\1\21\1\11\1\12\1\13\1\14\1\15\2\14"+
-    "\2\11\1\14\1\21\1\11\6\0\2\11\3\0\1\12"+
-    "\26\0\1\13\10\0\1\30\1\31\4\0\3\30\2\0"+
-    "\1\22\6\0\2\22\4\0\1\20\10\0\1\22\6\0"+
-    "\1\22\1\32\4\0\1\25\10\0\1\33\1\34\4\0"+
-    "\3\33\2\0\1\30\5\0\3\30\2\0\1\22\1\35"+
-    "\5\0\2\22\2\0\1\33\5\0\3\33\2\0";
+    "\1\14\1\22\1\11\1\12\1\13\1\14\1\15\2\14"+
+    "\2\11\1\14\1\22\1\11\6\0\2\11\3\0\1\12"+
+    "\26\0\1\13\10\0\1\30\1\31\4\0\3\30\4\0"+
+    "\1\20\10\0\1\23\6\0\2\23\2\0\1\23\6\0"+
+    "\1\23\1\32\4\0\1\25\10\0\1\33\1\34\4\0"+
+    "\3\33\2\0\1\30\5\0\3\30\2\0\1\23\1\35"+
+    "\5\0\2\23\2\0\1\33\5\0\3\33\2\0";
 
   private static int [] zzUnpacktrans() {
     int [] result = new int[231];
@@ -217,8 +217,8 @@ public class _ProjectionsDslLexer implements FlexLexer {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\10\0\2\1\2\11\2\1\3\11\3\1\1\11\3\1"+
-    "\1\0\2\1\2\0";
+    "\10\0\2\1\2\11\2\1\2\11\1\1\1\11\2\1"+
+    "\1\11\3\1\1\0\2\1\2\0";
 
   private static int [] zzUnpackAttribute() {
     int [] result = new int[29];
@@ -566,12 +566,12 @@ public class _ProjectionsDslLexer implements FlexLexer {
           // fall through
           case 16: break;
           case 7:
-            { yybegin(PROJECTION_START); return PROPERTY_ALIAS;
+            { yybegin(AFTER_PROPERTY_ALIAS); return PROPERTY_ALIAS;
             }
           // fall through
           case 17: break;
           case 8:
-            { yybegin(PROJECTION_START); return SEPARATOR;
+            { yybegin(AFTER_PROJECTION); return SEPARATOR;
             }
           // fall through
           case 18: break;

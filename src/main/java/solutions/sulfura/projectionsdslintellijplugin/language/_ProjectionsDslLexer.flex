@@ -30,7 +30,7 @@ PROJECTION_CONTAINER_END_CHAR = \}
 PROPERTY_NAME = [^:\,\s\t\r\n\{\}]+
 PROPERTY_ALIAS = (as(\ |\t)+)?[^:\,\s\t\r\n\{\}]+
 PROJECTION_TYPE_ALIAS = :(\ |\t)*[^\,\s\t\r\n\{\}]+
-%state PROJECTION_START
+%state AFTER_PROPERTY_ALIAS
 %state PROJECTION_CONTAINER_START
 %state PROPERTY_DECLARATION_START
 %state AFTER_PROPERTY_NAME
@@ -50,9 +50,9 @@ PROJECTION_TYPE_ALIAS = :(\ |\t)*[^\,\s\t\r\n\{\}]+
   [^]                                   { return BAD_CHARACTER; }
 }
 
-<PROJECTION_START> {
+<AFTER_PROPERTY_ALIAS> {
   {WS}                                  { return SPACE; }
-  {EOL}                                 { return SPACE; }
+  {EOL}                               { yybegin(AFTER_SEPARATOR); return SEPARATOR; }
   {COMMA}                               { yybegin(AFTER_SEPARATOR); return SEPARATOR; }
   {PROJECTION_TYPE_ALIAS}               { yybegin(PROJECTION_CONTAINER_START); return PROJECTION_TYPE_ALIAS; }
   {PROJECTION_CONTAINER_START_CHAR}     { yybegin(PROPERTY_DECLARATION_START); return PROJECTION_CONTAINER_START_CHAR; }
@@ -78,7 +78,7 @@ PROJECTION_TYPE_ALIAS = :(\ |\t)*[^\,\s\t\r\n\{\}]+
 
 <AFTER_PROPERTY_NAME> {
   {WS}                                  { return SPACE; }
-  {PROPERTY_ALIAS}                      { yybegin(PROJECTION_START); return PROPERTY_ALIAS; }
+  {PROPERTY_ALIAS}                      { yybegin(AFTER_PROPERTY_ALIAS); return PROPERTY_ALIAS; }
   {PROJECTION_TYPE_ALIAS}               { yybegin(PROJECTION_CONTAINER_START); return PROJECTION_TYPE_ALIAS; }
   {EOL}                                 { yybegin(AFTER_SEPARATOR); return SEPARATOR; }
   {COMMA}                               { yybegin(AFTER_SEPARATOR); return SEPARATOR; }
@@ -86,6 +86,7 @@ PROJECTION_TYPE_ALIAS = :(\ |\t)*[^\,\s\t\r\n\{\}]+
   {PROJECTION_CONTAINER_END_CHAR}       { yybegin(AFTER_PROJECTION_CONTAINER); return PROJECTION_CONTAINER_END_CHAR; }
   [^]                                   { return BAD_CHARACTER; }
 }
+
 <AFTER_SEPARATOR> {
   {WS}                                  { return SPACE; }
   {EOL}                                 { return SPACE; }
@@ -98,9 +99,9 @@ PROJECTION_TYPE_ALIAS = :(\ |\t)*[^\,\s\t\r\n\{\}]+
 // After }
 <AFTER_PROJECTION_CONTAINER> {
   {WS}                                  { return SPACE; }
-  {EOL}                                 { yybegin(PROJECTION_START); return SEPARATOR; }
   {PROJECTION_TYPE_ALIAS}               { yybegin(AFTER_PROJECTION); return PROJECTION_TYPE_ALIAS; }
-  {COMMA}                               { yybegin(PROJECTION_START); return SEPARATOR; }
+  {EOL}                                 { yybegin(AFTER_PROJECTION); return SEPARATOR; }
+  {COMMA}                               { yybegin(AFTER_PROJECTION); return SEPARATOR; }
   {PROJECTION_CONTAINER_START_CHAR}     { yybegin(PROPERTY_DECLARATION_START); return PROJECTION_CONTAINER_START_CHAR; }
   {PROJECTION_CONTAINER_END_CHAR}       { yybegin(AFTER_PROJECTION_CONTAINER); return PROJECTION_CONTAINER_END_CHAR; }
   [^]                                   { return BAD_CHARACTER; }
