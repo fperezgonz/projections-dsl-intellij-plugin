@@ -5,6 +5,7 @@ import com.intellij.lang.injection.InjectedLanguageManager;
 import com.intellij.lang.jvm.annotation.JvmAnnotationAttribute;
 import com.intellij.lang.jvm.annotation.JvmAnnotationClassValue;
 import com.intellij.psi.*;
+import com.intellij.psi.impl.source.tree.TreeElement;
 import com.intellij.psi.search.GlobalSearchScope;
 import com.intellij.psi.util.PsiTypesUtil;
 import com.intellij.psi.util.PsiUtil;
@@ -12,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 import solutions.sulfura.hyperkit.dtos.ListOperation;
 import solutions.sulfura.hyperkit.dtos.ValueWrapper;
 import solutions.sulfura.projectionsdslintellijplugin.psi.ProjectionsDslProjection;
-import solutions.sulfura.projectionsdslintellijplugin.psi.ProjectionsDslPropertyDecl;
+import solutions.sulfura.projectionsdslintellijplugin.psi.SimpleTypes;
 
 import java.util.*;
 
@@ -75,7 +76,7 @@ public class ProjectionsDslUtil {
 
             psiElement = psiElement.getPrevSibling();
 
-            if (psiElement instanceof ProjectionsDslPropertyDecl) {
+            if (psiElement instanceof TreeElement && ((TreeElement) psiElement).getElementType() == SimpleTypes.PROPERTY_NAME) {
                 return psiElement;
             }
 
