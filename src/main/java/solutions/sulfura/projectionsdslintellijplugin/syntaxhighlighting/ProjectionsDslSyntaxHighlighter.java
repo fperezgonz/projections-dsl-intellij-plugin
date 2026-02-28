@@ -14,8 +14,12 @@ import static com.intellij.openapi.editor.colors.TextAttributesKey.createTextAtt
 
 public class ProjectionsDslSyntaxHighlighter extends SyntaxHighlighterBase {
 
-    public static final TextAttributesKey FIELD_NAME =
-            createTextAttributesKey("FIELD_NAME", DefaultLanguageHighlighterColors.CONSTANT);
+    public static final TextAttributesKey PROPERTY_NAME =
+            createTextAttributesKey("PROPERTY_NAME", DefaultLanguageHighlighterColors.INSTANCE_FIELD);
+    public static final TextAttributesKey PROPERTY_ALIAS =
+            createTextAttributesKey("PROPERTY_ALIAS", DefaultLanguageHighlighterColors.IDENTIFIER);
+    public static final TextAttributesKey TYPE_ALIAS =
+            createTextAttributesKey("TYPE_ALIAS", DefaultLanguageHighlighterColors.CLASS_REFERENCE);
     public static final TextAttributesKey SEPARATOR =
             createTextAttributesKey("SEPARATOR", DefaultLanguageHighlighterColors.COMMA);
     public static final TextAttributesKey BRACES =
@@ -27,7 +31,9 @@ public class ProjectionsDslSyntaxHighlighter extends SyntaxHighlighterBase {
 
 
     private static final TextAttributesKey[] SEPARATOR_KEYS = new TextAttributesKey[]{SEPARATOR};
-    private static final TextAttributesKey[] FIELD_NAME_KEYS = new TextAttributesKey[]{FIELD_NAME};
+    private static final TextAttributesKey[] PROPERTY_NAME_KEYS = new TextAttributesKey[]{PROPERTY_NAME};
+    private static final TextAttributesKey[] PROPERTY_ALIAS_KEYS = new TextAttributesKey[]{PROPERTY_ALIAS};
+    private static final TextAttributesKey[] TYPE_ALIAS_KEYS = new TextAttributesKey[]{TYPE_ALIAS};
     private static final TextAttributesKey[] BRACES_KEYS = new TextAttributesKey[]{BRACES};
     private static final TextAttributesKey[] PROJECTION_KEYS = new TextAttributesKey[]{PROJECTION};
     private static final TextAttributesKey[] BAD_CHAR_KEYS = new TextAttributesKey[]{BAD_CHARACTER};
@@ -48,10 +54,16 @@ public class ProjectionsDslSyntaxHighlighter extends SyntaxHighlighterBase {
         if (tokenType.equals(SimpleTypes.SEPARATOR)) {
             return SEPARATOR_KEYS;
         }
-        if (tokenType.equals(SimpleTypes.FIELD_NAME)) {
-            return FIELD_NAME_KEYS;
+        if (tokenType.equals(SimpleTypes.PROPERTY_NAME)) {
+            return PROPERTY_NAME_KEYS;
         }
-        if (tokenType.equals(SimpleTypes.PROJECTION_START) || tokenType.equals(SimpleTypes.PROJECTION_END)) {
+        if (tokenType.equals(SimpleTypes.PROPERTY_ALIAS)) {
+            return PROPERTY_ALIAS_KEYS;
+        }
+        if (tokenType.equals(SimpleTypes.PROJECTION_TYPE_ALIAS)) {
+            return TYPE_ALIAS_KEYS;
+        }
+        if (tokenType.equals(SimpleTypes.PROJECTION_CONTAINER_START_CHAR) || tokenType.equals(SimpleTypes.PROJECTION_CONTAINER_END_CHAR)) {
             return BRACES_KEYS;
         }
 

@@ -31,6 +31,12 @@
         <lang.elementManipulator
                 implementationClass="solutions.sulfura.projectionsdslintellijplugin.references.ProjectionsDslPropertyNameManipulator"
                 forClass="solutions.sulfura.projectionsdslintellijplugin.psi.impl.ProjectionsDslPropertyNameImpl"/>
+        <additionalTextAttributes
+                scheme="Default"
+                file="color_schemes/ProjectionsDslDefault.xml"/>
+        <additionalTextAttributes
+                scheme="Darcula"
+                file="color_schemes/ProjectionsDslDarcula.xml"/>
     </extensions>
 
     <extensions defaultExtensionNs="org.intellij.intelliLang">

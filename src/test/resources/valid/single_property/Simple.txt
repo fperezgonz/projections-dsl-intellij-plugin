@@ -1,0 +1,4 @@
+ProjectionDslRoot(0,2)
+  ProjectionsDslProjectionContentImpl(PROJECTION_CONTENT)(0,2)
+    ProjectionsDslPropertyDeclImpl(PROPERTY_DECL)(0,2)
+      PsiElement(PROPERTY_NAME)('id')(0,2)

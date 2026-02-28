@@ -1,15 +1,15 @@
 // This is a generated file. Not intended for manual editing.
 package solutions.sulfura.projectionsdslintellijplugin.psi;
 
-import com.intellij.lang.ASTNode;
-import com.intellij.lang.LightPsiParser;
 import com.intellij.lang.PsiBuilder;
 import com.intellij.lang.PsiBuilder.Marker;
-import com.intellij.lang.PsiParser;
-import com.intellij.psi.tree.IElementType;
-
-import static com.intellij.lang.parser.GeneratedParserUtilBase.*;
 import static solutions.sulfura.projectionsdslintellijplugin.psi.SimpleTypes.*;
+import static solutions.sulfura.projectionsdslintellijplugin.psi.ProjectionsDslParserUtil.*;
+import com.intellij.psi.tree.IElementType;
+import com.intellij.lang.ASTNode;
+import com.intellij.psi.tree.TokenSet;
+import com.intellij.lang.PsiParser;
+import com.intellij.lang.LightPsiParser;
 
 @SuppressWarnings({"SimplifiableIfStatement", "UnusedAssignment"})
 public class ProjectionsDslParser implements PsiParser, LightPsiParser {
@@ -36,20 +36,25 @@ public class ProjectionsDslParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // PROJECTION_START SPACE* projectionContent SPACE* (SEPARATOR SPACE*)? PROJECTION_END
+  // PROJECTION_TYPE_ALIAS? SPACE* projectionContentContainer SPACE* (PROJECTION_TYPE_ALIAS)?
   public static boolean projection(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "projection")) return false;
-    if (!nextTokenIs(b, PROJECTION_START)) return false;
     boolean r;
-    Marker m = enter_section_(b);
-    r = consumeToken(b, PROJECTION_START);
+    Marker m = enter_section_(b, l, _NONE_, PROJECTION, "<projection>");
+    r = projection_0(b, l + 1);
     r = r && projection_1(b, l + 1);
-    r = r && projectionContent(b, l + 1);
+    r = r && projectionContentContainer(b, l + 1);
     r = r && projection_3(b, l + 1);
     r = r && projection_4(b, l + 1);
-    r = r && consumeToken(b, PROJECTION_END);
-    exit_section_(b, m, PROJECTION, r);
+    exit_section_(b, l, m, r, false, null);
     return r;
+  }
+
+  // PROJECTION_TYPE_ALIAS?
+  private static boolean projection_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "projection_0")) return false;
+    consumeToken(b, PROJECTION_TYPE_ALIAS);
+    return true;
   }
 
   // SPACE*
@@ -74,70 +79,86 @@ public class ProjectionsDslParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // (SEPARATOR SPACE*)?
+  // (PROJECTION_TYPE_ALIAS)?
   private static boolean projection_4(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "projection_4")) return false;
-    projection_4_0(b, l + 1);
+    consumeToken(b, PROJECTION_TYPE_ALIAS);
     return true;
   }
 
-  // SEPARATOR SPACE*
-  private static boolean projection_4_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "projection_4_0")) return false;
+  /* ********************************************************** */
+  // (SPACE* propertyDecl SPACE* SEPARATOR)* (SPACE* propertyDecl )? SPACE*
+  public static boolean projectionContent(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "projectionContent")) return false;
+    boolean r;
+    Marker m = enter_section_(b, l, _NONE_, PROJECTION_CONTENT, "<projection content>");
+    r = projectionContent_0(b, l + 1);
+    r = r && projectionContent_1(b, l + 1);
+    r = r && projectionContent_2(b, l + 1);
+    exit_section_(b, l, m, r, false, null);
+    return r;
+  }
+
+  // (SPACE* propertyDecl SPACE* SEPARATOR)*
+  private static boolean projectionContent_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "projectionContent_0")) return false;
+    while (true) {
+      int c = current_position_(b);
+      if (!projectionContent_0_0(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "projectionContent_0", c)) break;
+    }
+    return true;
+  }
+
+  // SPACE* propertyDecl SPACE* SEPARATOR
+  private static boolean projectionContent_0_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "projectionContent_0_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, SEPARATOR);
-    r = r && projection_4_0_1(b, l + 1);
+    r = projectionContent_0_0_0(b, l + 1);
+    r = r && propertyDecl(b, l + 1);
+    r = r && projectionContent_0_0_2(b, l + 1);
+    r = r && consumeToken(b, SEPARATOR);
     exit_section_(b, m, null, r);
     return r;
   }
 
   // SPACE*
-  private static boolean projection_4_0_1(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "projection_4_0_1")) return false;
+  private static boolean projectionContent_0_0_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "projectionContent_0_0_0")) return false;
     while (true) {
       int c = current_position_(b);
       if (!consumeToken(b, SPACE)) break;
-      if (!empty_element_parsed_guard_(b, "projection_4_0_1", c)) break;
+      if (!empty_element_parsed_guard_(b, "projectionContent_0_0_0", c)) break;
     }
     return true;
   }
 
-  /* ********************************************************** */
-  // propertyName ( SPACE* (SEPARATOR|projection) SPACE* propertyName)* SPACE* (SEPARATOR? SPACE* projection)?
-  public static boolean projectionContent(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "projectionContent")) return false;
-    if (!nextTokenIs(b, FIELD_NAME)) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = propertyName(b, l + 1);
-    r = r && projectionContent_1(b, l + 1);
-    r = r && projectionContent_2(b, l + 1);
-    r = r && projectionContent_3(b, l + 1);
-    exit_section_(b, m, PROJECTION_CONTENT, r);
-    return r;
-  }
-
-  // ( SPACE* (SEPARATOR|projection) SPACE* propertyName)*
-  private static boolean projectionContent_1(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "projectionContent_1")) return false;
+  // SPACE*
+  private static boolean projectionContent_0_0_2(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "projectionContent_0_0_2")) return false;
     while (true) {
       int c = current_position_(b);
-      if (!projectionContent_1_0(b, l + 1)) break;
-      if (!empty_element_parsed_guard_(b, "projectionContent_1", c)) break;
+      if (!consumeToken(b, SPACE)) break;
+      if (!empty_element_parsed_guard_(b, "projectionContent_0_0_2", c)) break;
     }
     return true;
   }
 
-  // SPACE* (SEPARATOR|projection) SPACE* propertyName
+  // (SPACE* propertyDecl )?
+  private static boolean projectionContent_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "projectionContent_1")) return false;
+    projectionContent_1_0(b, l + 1);
+    return true;
+  }
+
+  // SPACE* propertyDecl
   private static boolean projectionContent_1_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "projectionContent_1_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = projectionContent_1_0_0(b, l + 1);
-    r = r && projectionContent_1_0_1(b, l + 1);
-    r = r && projectionContent_1_0_2(b, l + 1);
-    r = r && propertyName(b, l + 1);
+    r = r && propertyDecl(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -153,26 +174,6 @@ public class ProjectionsDslParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // SEPARATOR|projection
-  private static boolean projectionContent_1_0_1(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "projectionContent_1_0_1")) return false;
-    boolean r;
-    r = consumeToken(b, SEPARATOR);
-    if (!r) r = projection(b, l + 1);
-    return r;
-  }
-
-  // SPACE*
-  private static boolean projectionContent_1_0_2(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "projectionContent_1_0_2")) return false;
-    while (true) {
-      int c = current_position_(b);
-      if (!consumeToken(b, SPACE)) break;
-      if (!empty_element_parsed_guard_(b, "projectionContent_1_0_2", c)) break;
-    }
-    return true;
-  }
-
   // SPACE*
   private static boolean projectionContent_2(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "projectionContent_2")) return false;
@@ -184,41 +185,18 @@ public class ProjectionsDslParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // (SEPARATOR? SPACE* projection)?
-  private static boolean projectionContent_3(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "projectionContent_3")) return false;
-    projectionContent_3_0(b, l + 1);
-    return true;
-  }
-
-  // SEPARATOR? SPACE* projection
-  private static boolean projectionContent_3_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "projectionContent_3_0")) return false;
+  /* ********************************************************** */
+  // PROJECTION_CONTAINER_START_CHAR projectionContent PROJECTION_CONTAINER_END_CHAR
+  public static boolean projectionContentContainer(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "projectionContentContainer")) return false;
+    if (!nextTokenIs(b, PROJECTION_CONTAINER_START_CHAR)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = projectionContent_3_0_0(b, l + 1);
-    r = r && projectionContent_3_0_1(b, l + 1);
-    r = r && projection(b, l + 1);
-    exit_section_(b, m, null, r);
+    r = consumeToken(b, PROJECTION_CONTAINER_START_CHAR);
+    r = r && projectionContent(b, l + 1);
+    r = r && consumeToken(b, PROJECTION_CONTAINER_END_CHAR);
+    exit_section_(b, m, PROJECTION_CONTENT_CONTAINER, r);
     return r;
-  }
-
-  // SEPARATOR?
-  private static boolean projectionContent_3_0_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "projectionContent_3_0_0")) return false;
-    consumeToken(b, SEPARATOR);
-    return true;
-  }
-
-  // SPACE*
-  private static boolean projectionContent_3_0_1(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "projectionContent_3_0_1")) return false;
-    while (true) {
-      int c = current_position_(b);
-      if (!consumeToken(b, SPACE)) break;
-      if (!empty_element_parsed_guard_(b, "projectionContent_3_0_1", c)) break;
-    }
-    return true;
   }
 
   /* ********************************************************** */
@@ -275,15 +253,55 @@ public class ProjectionsDslParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // FIELD_NAME
-  public static boolean propertyName(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "propertyName")) return false;
-    if (!nextTokenIs(b, FIELD_NAME)) return false;
+  // PROPERTY_NAME SPACE* PROPERTY_ALIAS? SPACE* projection?
+  public static boolean propertyDecl(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "propertyDecl")) return false;
+    if (!nextTokenIs(b, PROPERTY_NAME)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, FIELD_NAME);
-    exit_section_(b, m, PROPERTY_NAME, r);
+    r = consumeToken(b, PROPERTY_NAME);
+    r = r && propertyDecl_1(b, l + 1);
+    r = r && propertyDecl_2(b, l + 1);
+    r = r && propertyDecl_3(b, l + 1);
+    r = r && propertyDecl_4(b, l + 1);
+    exit_section_(b, m, PROPERTY_DECL, r);
     return r;
+  }
+
+  // SPACE*
+  private static boolean propertyDecl_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "propertyDecl_1")) return false;
+    while (true) {
+      int c = current_position_(b);
+      if (!consumeToken(b, SPACE)) break;
+      if (!empty_element_parsed_guard_(b, "propertyDecl_1", c)) break;
+    }
+    return true;
+  }
+
+  // PROPERTY_ALIAS?
+  private static boolean propertyDecl_2(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "propertyDecl_2")) return false;
+    consumeToken(b, PROPERTY_ALIAS);
+    return true;
+  }
+
+  // SPACE*
+  private static boolean propertyDecl_3(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "propertyDecl_3")) return false;
+    while (true) {
+      int c = current_position_(b);
+      if (!consumeToken(b, SPACE)) break;
+      if (!empty_element_parsed_guard_(b, "propertyDecl_3", c)) break;
+    }
+    return true;
+  }
+
+  // projection?
+  private static boolean propertyDecl_4(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "propertyDecl_4")) return false;
+    projection(b, l + 1);
+    return true;
   }
 
 }

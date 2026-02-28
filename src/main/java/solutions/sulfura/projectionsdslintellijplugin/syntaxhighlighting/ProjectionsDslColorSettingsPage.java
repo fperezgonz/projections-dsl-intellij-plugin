@@ -14,7 +14,9 @@ public class ProjectionsDslColorSettingsPage implements ColorSettingsPage {
 
     private static final AttributesDescriptor[] DESCRIPTORS = new AttributesDescriptor[]{
             new AttributesDescriptor("Projection", ProjectionsDslSyntaxHighlighter.PROJECTION),
-            new AttributesDescriptor("Field name", ProjectionsDslSyntaxHighlighter.FIELD_NAME),
+            new AttributesDescriptor("Property name", ProjectionsDslSyntaxHighlighter.PROPERTY_NAME),
+            new AttributesDescriptor("Property alias", ProjectionsDslSyntaxHighlighter.PROPERTY_ALIAS),
+            new AttributesDescriptor("Type alias", ProjectionsDslSyntaxHighlighter.TYPE_ALIAS),
             new AttributesDescriptor("Separator", ProjectionsDslSyntaxHighlighter.SEPARATOR),
             new AttributesDescriptor("Braces", ProjectionsDslSyntaxHighlighter.BRACES),
             new AttributesDescriptor("Bad character", ProjectionsDslSyntaxHighlighter.BAD_CHARACTER)
@@ -36,13 +38,9 @@ public class ProjectionsDslColorSettingsPage implements ColorSettingsPage {
     public String getDemoText() {
         return """
                 {
-                    field1
-                    field2, field3,
-                    field4 error
-                    field5 {
-                        nestedField1
+                    propertyName propertyAlias :TypeAlias {
+                        propertyName2, propertyName3
                     }
-                    field6
                 
                 }
                 """;

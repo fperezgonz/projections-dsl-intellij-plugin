@@ -1,3 +1,5 @@
+import org.jetbrains.intellij.platform.gradle.TestFrameworkType
+
 plugins {
     id("java")
     id("org.jetbrains.kotlin.jvm") version "1.9.25"
@@ -5,7 +7,7 @@ plugins {
 }
 
 group = "solutions.sulfura"
-version = "1.4-RELEASE"
+version = "1.5-SNAPSHOT"
 
 apply(from = "config/env.gradle.kts")
 
@@ -21,13 +23,15 @@ repositories {
 }
 
 dependencies {
-    implementation("solutions.sulfura:hyperkit-dto-api:5.0.0-SNAPSHOT")
-    implementation("solutions.sulfura:hyperkit-projections-dsl:5.0.0-SNAPSHOT")
+    implementation("solutions.sulfura:hyperkit-dto-api:6.3.0-SNAPSHOT")
+    implementation("solutions.sulfura:hyperkit-projections-dsl:6.3.0-SNAPSHOT")
 
     intellijPlatform {
         create("IC", "2025.1.3")
         bundledPlugins("com.intellij.java", "org.intellij.intelliLang")
+        testFramework(TestFrameworkType.Platform)
     }
+    testImplementation("junit:junit:4.13.2")
 }
 
 sourceSets["main"].java.srcDirs("src/main/gen")

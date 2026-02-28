@@ -29,14 +29,8 @@ public class ProjectionsDslProjectionContentImpl extends ASTWrapperPsiElement im
 
   @Override
   @NotNull
-  public List<ProjectionsDslProjection> getProjectionList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, ProjectionsDslProjection.class);
-  }
-
-  @Override
-  @NotNull
-  public List<ProjectionsDslPropertyName> getPropertyNameList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, ProjectionsDslPropertyName.class);
+  public List<ProjectionsDslPropertyDecl> getPropertyDeclList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, ProjectionsDslPropertyDecl.class);
   }
 
 }

@@ -1,0 +1,6 @@
+ProjectionDslRoot(0,2)
+  ProjectionsDslProjectionContentImpl(PROJECTION_CONTENT)(0,0)
+    <empty list>
+  PsiElement(PROJECTION_CONTAINER_START_CHAR)('{')(0,1)
+  PsiErrorElement:PROJECTION_CONTAINER_END_CHAR, PROPERTY_NAME or SPACE expected, got '}'(1,2)
+    PsiElement(BAD_CHARACTER)('}')(1,2)

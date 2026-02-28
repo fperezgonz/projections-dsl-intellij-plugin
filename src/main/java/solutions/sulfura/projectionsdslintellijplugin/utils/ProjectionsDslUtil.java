@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import solutions.sulfura.hyperkit.dtos.ListOperation;
 import solutions.sulfura.hyperkit.dtos.ValueWrapper;
 import solutions.sulfura.projectionsdslintellijplugin.psi.ProjectionsDslProjection;
-import solutions.sulfura.projectionsdslintellijplugin.psi.ProjectionsDslPropertyName;
+import solutions.sulfura.projectionsdslintellijplugin.psi.ProjectionsDslPropertyDecl;
 
 import java.util.*;
 
@@ -75,7 +75,7 @@ public class ProjectionsDslUtil {
 
             psiElement = psiElement.getPrevSibling();
 
-            if (psiElement instanceof ProjectionsDslPropertyName) {
+            if (psiElement instanceof ProjectionsDslPropertyDecl) {
                 return psiElement;
             }
 

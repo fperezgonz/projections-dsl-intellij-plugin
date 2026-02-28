@@ -25,32 +25,93 @@ import static solutions.sulfura.projectionsdslintellijplugin.psi.SimpleTypes.*;
 EOL = (\r\n)|\r|\n
 WS = (\ |\t)+
 COMMA = \,
-PROJECTION_START = \{
-PROJECTION_END = \}
-FIELD_NAME = [^\,\s\t\r\n\{\}]+
-%state AFTER_FIELD_NAME
+PROJECTION_CONTAINER_START_CHAR = \{
+PROJECTION_CONTAINER_END_CHAR = \}
+PROPERTY_NAME = [^:\,\s\t\r\n\{\}]+
+PROPERTY_ALIAS = (as(\ |\t)+)?[^:\,\s\t\r\n\{\}]+
+PROJECTION_TYPE_ALIAS = :(\ |\t)*[^\,\s\t\r\n\{\}]+
+%state PROJECTION_START
+%state PROJECTION_CONTAINER_START
+%state PROPERTY_DECLARATION_START
+%state AFTER_PROPERTY_NAME
+%state AFTER_PROJECTION_CONTAINER
+%state AFTER_PROJECTION
+%state AFTER_SEPARATOR
 
 
 %%
-
+// This is the starting state for the root projection
 <YYINITIAL> {
   {WS}                                  { return SPACE; }
   {EOL}                                 { return SPACE; }
-  {COMMA}                               { return SEPARATOR; }
-  {FIELD_NAME}                          { yybegin(AFTER_FIELD_NAME); return FIELD_NAME; }
-  {PROJECTION_START}                    { return PROJECTION_START; }
-  {PROJECTION_END}                      { return PROJECTION_END; }
+  {PROPERTY_NAME}                       { yybegin(AFTER_PROPERTY_NAME); return PROPERTY_NAME; }
+  {PROJECTION_TYPE_ALIAS}               { yybegin(PROJECTION_CONTAINER_START); return PROJECTION_TYPE_ALIAS; }
+  {PROJECTION_CONTAINER_START_CHAR}     { yybegin(PROPERTY_DECLARATION_START); return PROJECTION_CONTAINER_START_CHAR; }
+  [^]                                   { return BAD_CHARACTER; }
+}
+
+<PROJECTION_START> {
+  {WS}                                  { return SPACE; }
+  {EOL}                                 { return SPACE; }
+  {COMMA}                               { yybegin(AFTER_SEPARATOR); return SEPARATOR; }
+  {PROJECTION_TYPE_ALIAS}               { yybegin(PROJECTION_CONTAINER_START); return PROJECTION_TYPE_ALIAS; }
+  {PROJECTION_CONTAINER_START_CHAR}     { yybegin(PROPERTY_DECLARATION_START); return PROJECTION_CONTAINER_START_CHAR; }
+  {PROJECTION_CONTAINER_END_CHAR}       { yybegin(AFTER_PROJECTION_CONTAINER); return PROJECTION_CONTAINER_END_CHAR; }
+  [^]                                   { return BAD_CHARACTER; }
+}
+
+// After {
+<PROJECTION_CONTAINER_START> {
+  {WS}                                  { return SPACE; }
+  {EOL}                                 { return SPACE; }
+  {PROJECTION_CONTAINER_START_CHAR}     { yybegin(PROPERTY_DECLARATION_START); return PROJECTION_CONTAINER_START_CHAR; }
+  [^]                                   { return BAD_CHARACTER; }
+}
+
+// A property name is the only meaningful token in this state
+<PROPERTY_DECLARATION_START> {
+  {WS}                                  { return SPACE; }
+  {EOL}                                 { return SPACE; }
+  {PROPERTY_NAME}                       { yybegin(AFTER_PROPERTY_NAME); return PROPERTY_NAME; }
+  [^]                                   { return BAD_CHARACTER; }
+}
+
+<AFTER_PROPERTY_NAME> {
+  {WS}                                  { return SPACE; }
+  {PROPERTY_ALIAS}                      { yybegin(PROJECTION_START); return PROPERTY_ALIAS; }
+  {PROJECTION_TYPE_ALIAS}               { yybegin(PROJECTION_CONTAINER_START); return PROJECTION_TYPE_ALIAS; }
+  {EOL}                                 { yybegin(AFTER_SEPARATOR); return SEPARATOR; }
+  {COMMA}                               { yybegin(AFTER_SEPARATOR); return SEPARATOR; }
+  {PROJECTION_CONTAINER_START_CHAR}     { yybegin(PROPERTY_DECLARATION_START); return PROJECTION_CONTAINER_START_CHAR;  }
+  {PROJECTION_CONTAINER_END_CHAR}       { yybegin(AFTER_PROJECTION_CONTAINER); return PROJECTION_CONTAINER_END_CHAR; }
+  [^]                                   { return BAD_CHARACTER; }
+}
+<AFTER_SEPARATOR> {
+  {WS}                                  { return SPACE; }
+  {EOL}                                 { return SPACE; }
+  {PROPERTY_NAME}                       { yybegin(AFTER_PROPERTY_NAME); return PROPERTY_NAME; }
+  {PROJECTION_CONTAINER_END_CHAR}       { yybegin(AFTER_PROJECTION_CONTAINER); return PROJECTION_CONTAINER_END_CHAR; }
   [^]                                   { return BAD_CHARACTER; }
 
 }
 
-<AFTER_FIELD_NAME> {
+// After }
+<AFTER_PROJECTION_CONTAINER> {
   {WS}                                  { return SPACE; }
-  {FIELD_NAME}                          { return FIELD_NAME; }
-  {EOL}                                 { yybegin(YYINITIAL); return SEPARATOR; }
-  {COMMA}                               { yybegin(YYINITIAL); return SEPARATOR; }
-  {PROJECTION_START}                    { yybegin(YYINITIAL); return PROJECTION_START;  }
-  {PROJECTION_END}                      { yybegin(YYINITIAL); return PROJECTION_END; }
+  {EOL}                                 { yybegin(PROJECTION_START); return SEPARATOR; }
+  {PROJECTION_TYPE_ALIAS}               { yybegin(AFTER_PROJECTION); return PROJECTION_TYPE_ALIAS; }
+  {COMMA}                               { yybegin(PROJECTION_START); return SEPARATOR; }
+  {PROJECTION_CONTAINER_START_CHAR}     { yybegin(PROPERTY_DECLARATION_START); return PROJECTION_CONTAINER_START_CHAR; }
+  {PROJECTION_CONTAINER_END_CHAR}       { yybegin(AFTER_PROJECTION_CONTAINER); return PROJECTION_CONTAINER_END_CHAR; }
   [^]                                   { return BAD_CHARACTER; }
+}
 
+// After type alias after projection
+<AFTER_PROJECTION> {
+  {WS}                                  { return SPACE; }
+  {EOL}                                 { return SPACE; }
+  {COMMA}                               { yybegin(AFTER_SEPARATOR); return SEPARATOR; }
+  {PROPERTY_NAME}                       { yybegin(AFTER_PROPERTY_NAME); return PROPERTY_NAME; }
+  {PROJECTION_CONTAINER_END_CHAR}       { yybegin(AFTER_PROJECTION_CONTAINER); return PROJECTION_CONTAINER_END_CHAR; }
+  [^]                                   { return BAD_CHARACTER; }
 }

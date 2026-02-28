@@ -1,0 +1,3 @@
+{ user usr: User { id
+name
+resourceReferences { name }, role { id } }

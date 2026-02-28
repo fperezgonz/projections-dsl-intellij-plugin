@@ -10,11 +10,14 @@ public interface SimpleTypes {
 
   IElementType PROJECTION = new ProjectionsDslElementType("PROJECTION");
   IElementType PROJECTION_CONTENT = new ProjectionsDslElementType("PROJECTION_CONTENT");
-  IElementType PROPERTY_NAME = new ProjectionsDslElementType("PROPERTY_NAME");
+  IElementType PROJECTION_CONTENT_CONTAINER = new ProjectionsDslElementType("PROJECTION_CONTENT_CONTAINER");
+  IElementType PROPERTY_DECL = new ProjectionsDslElementType("PROPERTY_DECL");
 
-  IElementType FIELD_NAME = new ProjectionsDslTokenType("FIELD_NAME");
-  IElementType PROJECTION_END = new ProjectionsDslTokenType("PROJECTION_END");
-  IElementType PROJECTION_START = new ProjectionsDslTokenType("PROJECTION_START");
+  IElementType PROJECTION_CONTAINER_END_CHAR = new ProjectionsDslTokenType("PROJECTION_CONTAINER_END_CHAR");
+  IElementType PROJECTION_CONTAINER_START_CHAR = new ProjectionsDslTokenType("PROJECTION_CONTAINER_START_CHAR");
+  IElementType PROJECTION_TYPE_ALIAS = new ProjectionsDslTokenType("PROJECTION_TYPE_ALIAS");
+  IElementType PROPERTY_ALIAS = new ProjectionsDslTokenType("PROPERTY_ALIAS");
+  IElementType PROPERTY_NAME = new ProjectionsDslTokenType("PROPERTY_NAME");
   IElementType SEPARATOR = new ProjectionsDslTokenType("SEPARATOR");
   IElementType SPACE = new ProjectionsDslTokenType("SPACE");
 
@@ -27,8 +30,11 @@ public interface SimpleTypes {
       else if (type == PROJECTION_CONTENT) {
         return new ProjectionsDslProjectionContentImpl(node);
       }
-      else if (type == PROPERTY_NAME) {
-        return new ProjectionsDslPropertyNameImpl(node);
+      else if (type == PROJECTION_CONTENT_CONTAINER) {
+        return new ProjectionsDslProjectionContentContainerImpl(node);
+      }
+      else if (type == PROPERTY_DECL) {
+        return new ProjectionsDslPropertyDeclImpl(node);
       }
       throw new AssertionError("Unknown element type: " + type);
     }

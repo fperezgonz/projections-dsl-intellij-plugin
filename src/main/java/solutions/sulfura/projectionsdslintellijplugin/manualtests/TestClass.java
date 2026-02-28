@@ -12,7 +12,7 @@ public class TestClass {
 
     @DtoProjectionSpec(projectedClass = TestDto.class, value = """
             {
-            listTestDto ,
+            listTestDto as ltd: Ltd,
             
             
             optionalString,

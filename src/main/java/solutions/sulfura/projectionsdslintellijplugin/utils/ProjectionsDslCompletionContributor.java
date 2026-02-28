@@ -17,7 +17,7 @@ import static solutions.sulfura.projectionsdslintellijplugin.utils.ProjectionsDs
 public class ProjectionsDslCompletionContributor extends CompletionContributor {
 
     public ProjectionsDslCompletionContributor() {
-        extend(CompletionType.BASIC, PlatformPatterns.psiElement(SimpleTypes.FIELD_NAME),
+        extend(CompletionType.BASIC, PlatformPatterns.psiElement(SimpleTypes.PROPERTY_NAME),
                 new ProjectionsDslCompletionProvider()
         );
     }

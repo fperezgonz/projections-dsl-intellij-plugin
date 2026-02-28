@@ -4,13 +4,13 @@
    import com.intellij.psi.AbstractElementManipulator;
    import com.intellij.util.IncorrectOperationException;
    import org.jetbrains.annotations.Nullable;
-   import solutions.sulfura.projectionsdslintellijplugin.psi.impl.ProjectionsDslPropertyNameImpl;
    import org.jetbrains.annotations.NotNull;
+   import solutions.sulfura.projectionsdslintellijplugin.psi.impl.ProjectionsDslPropertyDeclImpl;
 
-   public class ProjectionsDslPropertyNameManipulator extends AbstractElementManipulator<ProjectionsDslPropertyNameImpl> {
+   public class ProjectionsDslPropertyNameManipulator extends AbstractElementManipulator<ProjectionsDslPropertyDeclImpl> {
 
        @Override
-       public @Nullable ProjectionsDslPropertyNameImpl handleContentChange(@NotNull ProjectionsDslPropertyNameImpl element, @NotNull TextRange range, String newContent) throws IncorrectOperationException {
+       public @Nullable ProjectionsDslPropertyDeclImpl handleContentChange(@NotNull ProjectionsDslPropertyDeclImpl element, @NotNull TextRange range, String newContent) throws IncorrectOperationException {
 
            //TODO
            // Implement how the content change should be handled

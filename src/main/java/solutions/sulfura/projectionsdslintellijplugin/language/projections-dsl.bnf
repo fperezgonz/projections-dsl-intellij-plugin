@@ -1,5 +1,6 @@
 {
   parserClass="solutions.sulfura.projectionsdslintellijplugin.psi.ProjectionsDslParser"
+  parserUtilClass="solutions.sulfura.projectionsdslintellijplugin.psi.ProjectionsDslParserUtil"
 
   extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
 
@@ -18,11 +19,14 @@
 
 projectionRoot ::= SPACE* (projection|projectionContent) (SEPARATOR|SPACE)*
 
-projection ::= PROJECTION_START SPACE* projectionContent SPACE* (SEPARATOR SPACE*)? PROJECTION_END
+projection ::= PROJECTION_TYPE_ALIAS? SPACE* projectionContentContainer SPACE* (PROJECTION_TYPE_ALIAS)?
 
-projectionContent ::= propertyName ( SPACE* (SEPARATOR|projection) SPACE* propertyName)* SPACE* (SEPARATOR? SPACE* projection)?
+projectionContentContainer ::= PROJECTION_CONTAINER_START_CHAR projectionContent PROJECTION_CONTAINER_END_CHAR
 
-propertyName ::= FIELD_NAME
+projectionContent ::= (SPACE* propertyDecl SPACE* SEPARATOR)* (SPACE* propertyDecl )? SPACE*
+
+propertyDecl ::= PROPERTY_NAME SPACE* PROPERTY_ALIAS? SPACE* projection?
+
 {
     methods=[getReferences]
 }

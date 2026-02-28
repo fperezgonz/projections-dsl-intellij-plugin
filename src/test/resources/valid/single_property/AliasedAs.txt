@@ -1,0 +1,6 @@
+ProjectionDslRoot(0,10)
+  ProjectionsDslProjectionContentImpl(PROJECTION_CONTENT)(0,10)
+    ProjectionsDslPropertyDeclImpl(PROPERTY_DECL)(0,10)
+      PsiElement(PROPERTY_NAME)('id')(0,2)
+      PsiElement(SPACE)(' ')(2,3)
+      PsiElement(PROPERTY_ALIAS)('as code')(3,10)

@@ -29,8 +29,8 @@ public class ProjectionsDslProjectionImpl extends ASTWrapperPsiElement implement
 
   @Override
   @NotNull
-  public ProjectionsDslProjectionContent getProjectionContent() {
-    return findNotNullChildByClass(ProjectionsDslProjectionContent.class);
+  public ProjectionsDslProjectionContentContainer getProjectionContentContainer() {
+    return findNotNullChildByClass(ProjectionsDslProjectionContentContainer.class);
   }
 
 }

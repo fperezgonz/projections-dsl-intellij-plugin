@@ -44,7 +44,7 @@ bin/
 /.run/Run IDE with Plugin.run.xml
 /idea-flex.skeleton
 /src/main/gen/solutions/sulfura/projectionsdslintellijplugin/idea-flex.skeleton
-/jflex-1.9.1.jar
+/jflex-*
 
 ### Environment settings ###
 /config/**

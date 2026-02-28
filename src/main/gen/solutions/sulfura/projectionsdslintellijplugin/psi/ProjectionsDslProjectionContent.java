@@ -8,9 +8,6 @@ import com.intellij.psi.PsiElement;
 public interface ProjectionsDslProjectionContent extends PsiElement {
 
   @NotNull
-  List<ProjectionsDslProjection> getProjectionList();
-
-  @NotNull
-  List<ProjectionsDslPropertyName> getPropertyNameList();
+  List<ProjectionsDslPropertyDecl> getPropertyDeclList();
 
 }
