@@ -8,6 +8,7 @@ import solutions.sulfura.hyperkit.dtos.ValueWrapper;
 import java.util.List;
 import java.util.Optional;
 
+@SuppressWarnings("ALL")
 public class TestClass {
 
     @DtoProjectionSpec(projectedClass = TestDto.class, value = """
