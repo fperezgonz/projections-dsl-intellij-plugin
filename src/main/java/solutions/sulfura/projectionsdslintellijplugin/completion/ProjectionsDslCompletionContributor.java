@@ -60,12 +60,13 @@ public class ProjectionsDslCompletionContributor extends CompletionContributor {
             PsiField[] fields = psiNestedProjectionRootClass.getAllFields();
 
             //TODO filter out properties already declared in the current projection
-            result.addAllElements(
-                    Arrays.stream(fields)
-                            .map(PsiField::getName)
-                            .filter(field -> field.toLowerCase().contains(searchTerm.toLowerCase()))
-                            .map(LookupElementBuilder::create)
-                            .toList()
+            var elements = Arrays.stream(fields)
+                    .map(PsiField::getName)
+                    .map(LookupElementBuilder::create)
+                    .toList();
+
+            result.withPrefixMatcher(searchTerm).addAllElements(
+                    elements
             );
 
         }
