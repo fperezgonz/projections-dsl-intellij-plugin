@@ -18,7 +18,7 @@ public class DeepNestingParsingTest extends ParsingTestCase {
      */
     @Override
     protected String getTestDataPath() {
-        return "src/test/resources/valid/deep_nesting";
+        return "src/test/resources/grammar_tests/valid/deep_nesting";
     }
 
     @Override

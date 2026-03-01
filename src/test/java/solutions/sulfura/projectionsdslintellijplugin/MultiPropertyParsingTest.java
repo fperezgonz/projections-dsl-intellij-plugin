@@ -46,7 +46,7 @@ public class MultiPropertyParsingTest extends ParsingTestCase {
      */
     @Override
     protected String getTestDataPath() {
-        return "src/test/resources/valid/multi_property";
+        return "src/test/resources/grammar_tests/valid/multi_property";
     }
 
     @Override

@@ -46,7 +46,7 @@ public class SinglePropertyParsingTest  extends ParsingTestCase {
      */
     @Override
     protected String getTestDataPath() {
-        return "src/test/resources/valid/single_property";
+        return "src/test/resources/grammar_tests/valid/single_property";
     }
 
     @Override

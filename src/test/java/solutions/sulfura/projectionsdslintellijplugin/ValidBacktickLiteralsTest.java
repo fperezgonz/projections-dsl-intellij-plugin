@@ -18,7 +18,7 @@ public class ValidBacktickLiteralsTest extends ParsingTestCase {
      */
     @Override
     protected String getTestDataPath() {
-        return "src/test/resources/valid/backtick_literals";
+        return "src/test/resources/grammar_tests/valid/backtick_literals";
     }
 
     @Override

@@ -18,7 +18,7 @@ public class EmptyProjectionParsingTest extends ParsingTestCase {
      */
     @Override
     protected String getTestDataPath() {
-        return "src/test/resources/invalid/empty_projection";
+        return "src/test/resources/grammar_tests/invalid/empty_projection";
     }
 
     @Override

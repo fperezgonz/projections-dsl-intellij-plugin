@@ -30,7 +30,7 @@ public class InvalidBacktickLiteralsTest extends ParsingTestCase {
      */
     @Override
     protected String getTestDataPath() {
-        return "src/test/resources/invalid/backtick_literals";
+        return "src/test/resources/grammar_tests/invalid/backtick_literals";
     }
 
     @Override
