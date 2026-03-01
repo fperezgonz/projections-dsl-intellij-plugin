@@ -12,11 +12,12 @@ public class TestClass {
 
     @DtoProjectionSpec(projectedClass = TestDto.class, value = """
             {
-            listTestDto as ltd: Ltd,
+            listTestDto  { plainString }
             
             
             optionalString,
             nestedNestedTestDto{
+            
                 nestedTestDto {
                     listString
                     plainString
@@ -28,7 +29,6 @@ public class TestClass {
                     optionTestDto { optionString,opt, listString
             
                      }
-                     optionTestDto
                 }
             }
             listString, optionTestDto
@@ -42,7 +42,7 @@ public class TestClass {
     public static class TestDto implements Dto {
         String plainString;
         ValueWrapper<String> optionString;
-        Optional<String> optionalString;
+        public Optional<String> optionalString;
         List<String> listString;
         ValueWrapper<TestDto> optionTestDto;
         List<ListOperation<TestDto>> listTestDto;

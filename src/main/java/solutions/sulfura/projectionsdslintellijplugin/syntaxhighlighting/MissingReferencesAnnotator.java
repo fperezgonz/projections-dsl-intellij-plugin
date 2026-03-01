@@ -1,4 +1,4 @@
-package solutions.sulfura.projectionsdslintellijplugin.annotator;
+package solutions.sulfura.projectionsdslintellijplugin.syntaxhighlighting;
 
 import com.intellij.lang.annotation.AnnotationHolder;
 import com.intellij.lang.annotation.Annotator;
@@ -9,7 +9,7 @@ import com.intellij.psi.PsiReference;
 import org.jetbrains.annotations.NotNull;
 import solutions.sulfura.hyperkit.dsl.projections.DtoProjectionSpec;
 import solutions.sulfura.projectionsdslintellijplugin.psi.ProjectionsDslPropertyDecl;
-import solutions.sulfura.projectionsdslintellijplugin.utils.ProjectionsDslUtil;
+import solutions.sulfura.projectionsdslintellijplugin.psi.ProjectionsDslPsiUtil;
 
 public class MissingReferencesAnnotator implements Annotator {
 
@@ -19,7 +19,7 @@ public class MissingReferencesAnnotator implements Annotator {
             return;
         }
 
-        PsiAnnotation contextAnnotation = ProjectionsDslUtil.getContextAnnotation(element);
+        PsiAnnotation contextAnnotation = ProjectionsDslPsiUtil.getContextAnnotation(element);
         if (contextAnnotation == null || !DtoProjectionSpec.class.getCanonicalName().equals(contextAnnotation.getQualifiedName())) {
             return;
         }

@@ -23,14 +23,14 @@
         <colorSettingsPage
                 implementation="solutions.sulfura.projectionsdslintellijplugin.syntaxhighlighting.ProjectionsDslColorSettingsPage"/>
         <completion.contributor
-                implementationClass="solutions.sulfura.projectionsdslintellijplugin.utils.ProjectionsDslCompletionContributor"
+                implementationClass="solutions.sulfura.projectionsdslintellijplugin.completion.ProjectionsDslCompletionContributor"
                 language="DtoProjectionsDsl"/>
         <psi.referenceContributor
                 implementation="solutions.sulfura.projectionsdslintellijplugin.references.ProjectionsDslReferenceContributor"
                 language="DtoProjectionsDsl"/>
         <annotator
                 language="DtoProjectionsDsl"
-                implementationClass="solutions.sulfura.projectionsdslintellijplugin.annotator.MissingReferencesAnnotator"/>
+                implementationClass="solutions.sulfura.projectionsdslintellijplugin.syntaxhighlighting.MissingReferencesAnnotator"/>
         <lang.elementManipulator
                 implementationClass="solutions.sulfura.projectionsdslintellijplugin.references.ProjectionsDslPropertyNameManipulator"
                 forClass="solutions.sulfura.projectionsdslintellijplugin.psi.impl.ProjectionsDslPropertyDeclImpl"/>

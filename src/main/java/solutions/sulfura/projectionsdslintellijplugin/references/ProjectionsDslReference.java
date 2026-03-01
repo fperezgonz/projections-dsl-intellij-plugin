@@ -5,17 +5,15 @@ import com.intellij.psi.*;
 import com.intellij.psi.tree.TokenSet;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import solutions.sulfura.projectionsdslintellijplugin.psi.SimpleTypes;
-import solutions.sulfura.projectionsdslintellijplugin.psi.impl.ProjectionsDslPropertyDeclImpl;
-import solutions.sulfura.projectionsdslintellijplugin.utils.ProjectionsDslUtil;
+import solutions.sulfura.projectionsdslintellijplugin.psi.ProjectionsDslPsiUtil;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 import static solutions.sulfura.projectionsdslintellijplugin.psi.SimpleTypes.PROPERTY_NAME;
-import static solutions.sulfura.projectionsdslintellijplugin.utils.ProjectionsDslUtil.getContextAnnotation;
-import static solutions.sulfura.projectionsdslintellijplugin.utils.ProjectionsDslUtil.getPathToProperty;
+import static solutions.sulfura.projectionsdslintellijplugin.psi.ProjectionsDslPsiUtil.getContextAnnotation;
+import static solutions.sulfura.projectionsdslintellijplugin.psi.ProjectionsDslPsiUtil.getPathToProperty;
 
 public class ProjectionsDslReference extends PsiReferenceBase<PsiElement> {
     public ProjectionsDslReference(PsiElement element) {
@@ -37,7 +35,7 @@ public class ProjectionsDslReference extends PsiReferenceBase<PsiElement> {
         List<String> projectionPropertyPath = getPathToProperty(getElement());
 
         //Find The projected class for the path of the current element
-        PsiClass psiNestedProjectionRootClass = ProjectionsDslUtil.findProjectedClassAtPath(psiAnnotation, projectionPropertyPath);
+        PsiClass psiNestedProjectionRootClass = ProjectionsDslPsiUtil.findProjectedClassAtPath(psiAnnotation, projectionPropertyPath);
 
         if (psiNestedProjectionRootClass == null) {
             return null;

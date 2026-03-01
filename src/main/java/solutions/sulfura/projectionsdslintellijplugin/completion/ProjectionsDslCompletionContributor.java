@@ -1,4 +1,4 @@
-package solutions.sulfura.projectionsdslintellijplugin.utils;
+package solutions.sulfura.projectionsdslintellijplugin.completion;
 
 import com.intellij.codeInsight.completion.*;
 import com.intellij.codeInsight.lookup.LookupElementBuilder;
@@ -7,12 +7,11 @@ import com.intellij.psi.*;
 import com.intellij.util.ProcessingContext;
 import org.apache.commons.lang3.ObjectUtils;
 import org.jetbrains.annotations.NotNull;
+import solutions.sulfura.projectionsdslintellijplugin.psi.ProjectionsDslPsiUtil;
 import solutions.sulfura.projectionsdslintellijplugin.psi.SimpleTypes;
 
 import java.util.Arrays;
 import java.util.List;
-
-import static solutions.sulfura.projectionsdslintellijplugin.utils.ProjectionsDslUtil.*;
 
 public class ProjectionsDslCompletionContributor extends CompletionContributor {
 
@@ -29,7 +28,7 @@ public class ProjectionsDslCompletionContributor extends CompletionContributor {
 
             PsiElement element = parameters.getPosition();
             PsiElement originalElement = parameters.getOriginalPosition();
-            PsiAnnotation psiAnnotation = getContextAnnotation(element);
+            PsiAnnotation psiAnnotation = ProjectionsDslPsiUtil.getContextAnnotation(element);
 
             if (psiAnnotation == null) {
                 return;
@@ -40,18 +39,18 @@ public class ProjectionsDslCompletionContributor extends CompletionContributor {
             }
 
             List<String> projectionPropertyPath;
-            projectionPropertyPath = getPathToProperty(originalElement);
+            projectionPropertyPath = ProjectionsDslPsiUtil.getPathToProperty(originalElement);
             String inputtedTextForCurrentProperty = getInputtedTextForCurrentProperty(parameters);
             String searchTerm = ObjectUtils.firstNonNull(inputtedTextForCurrentProperty, "");
             projectionPropertyPath.add(searchTerm);
-            PsiType psiType = getProjectedPsiType(psiAnnotation);
+            PsiType psiType = ProjectionsDslPsiUtil.getProjectedPsiType(psiAnnotation);
 
             if (!(psiType instanceof PsiClassType)) {
                 return;
             }
 
             //Find The projected class for the path of the current element
-            PsiClass psiNestedProjectionRootClass = ProjectionsDslUtil.findProjectedClassAtPath(psiAnnotation, projectionPropertyPath);
+            PsiClass psiNestedProjectionRootClass = ProjectionsDslPsiUtil.findProjectedClassAtPath(psiAnnotation, projectionPropertyPath);
 
             if (psiNestedProjectionRootClass == null) {
                 return;
