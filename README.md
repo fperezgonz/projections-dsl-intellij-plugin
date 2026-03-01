@@ -32,9 +32,13 @@ This project uses Gradle with the IntelliJ Gradle Plugin. To build the plugin:
 
 The resulting ZIP/JAR will be located in `build/distributions/`.
 
-### Running with IDE
+
+### Manual tests
+
+#### Running with IDE
 To launch a development instance of IntelliJ IDEA with the plugin installed:
 
 ```bash
 ./gradlew runIde
 ```
+There is a [test-project](src/test/resources/test-project) with a sample project that can be used for manual verification

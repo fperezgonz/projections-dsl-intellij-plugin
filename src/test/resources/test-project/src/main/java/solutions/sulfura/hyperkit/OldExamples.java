@@ -1,4 +1,4 @@
-package solutions.sulfura.projectionsdslintellijplugin.manualtests;
+package solutions.sulfura.hyperkit;
 
 import solutions.sulfura.hyperkit.dsl.projections.DtoProjectionSpec;
 import solutions.sulfura.hyperkit.dtos.Dto;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @SuppressWarnings("ALL")
-public class TestClass {
+public class OldExamples {
 
     @DtoProjectionSpec(projectedClass = TestDto.class, value = """
             {
